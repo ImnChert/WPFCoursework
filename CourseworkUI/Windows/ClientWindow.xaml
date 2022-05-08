@@ -1,0 +1,125 @@
+﻿<Window x:Class="CourseworkUI.Windows.ClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseworkUI.Windows"
+        xmlns:vm="clr-namespace:CourseworkUI.ViewModels"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" 
+        mc:Ignorable="d"
+        Title="RegisterWindow" Height="550" Width="800"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <Style x:Key="BlackAndWhite">
+            <Setter Property="ItemsControl.BorderBrush" Value="Transparent"/>
+            <Setter Property="Control.Background" Value="Transparent" />
+            <Setter Property="Control.Foreground" Value="White" />
+
+        </Style>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <vm:ClientViewModel/>
+    </Window.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border CornerRadius="10" Grid.RowSpan="3" Grid.ColumnSpan="2">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#0E294B" Offset="0.0"/>
+                    <GradientStop Color="#00BFFF" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Frame x:Name="Frame" Grid.ColumnSpan="3" Grid.RowSpan="4" NavigationUIVisibility="Hidden"
+               Content="{Binding CurPage}"/>
+
+        <Grid x:Name="TopGrid" Grid.Row="0" MouseDown="Top_MouseDown">
+            <StackPanel Grid.Row="0">
+
+                <iconPacks:PackIconMaterial Name="cross" Kind="Close" HorizontalAlignment="Right" Margin="0,5,5,0" MouseDown="Cross_MouseDown">
+                    <iconPacks:PackIconMaterial.Style>
+                        <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=cross}" 
+                                             Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </iconPacks:PackIconMaterial.Style>
+
+                    <iconPacks:PackIconMaterial.Effect>
+                        <BlurEffect Radius="2"/>
+                    </iconPacks:PackIconMaterial.Effect>
+                </iconPacks:PackIconMaterial>
+
+                <iconPacks:PackIconMaterial Name="stick"  Kind="WindowMinimize" HorizontalAlignment="Right" Margin="0,-11,35,0" MouseDown="Stick_MouseDown">
+                    <iconPacks:PackIconMaterial.Style>
+                        <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=stick}" 
+                                             Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </iconPacks:PackIconMaterial.Style>
+
+                    <iconPacks:PackIconMaterial.Effect>
+                        <BlurEffect Radius="2"/>
+                    </iconPacks:PackIconMaterial.Effect>
+                </iconPacks:PackIconMaterial>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="GeneralInformationButton" Content="General information" Style="{StaticResource BlackAndWhite}" Grid.Column="0"/>
+            <Button Name="MakeAnApplicationButton" Content="Make an application" Style="{StaticResource BlackAndWhite}" Grid.Column="1"/>
+            <Button Name="AccountButton" Style="{StaticResource BlackAndWhite}" Grid.Column="5"/>
+            <iconPacks:PackIconMaterial Grid.Column="5" Kind="Account"
+                                               Height="50"
+                                               Width="50"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center">
+                <iconPacks:PackIconMaterial.Style>
+                    <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type iconPacks:PackIconMaterial}">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            CornerRadius="20"
+                                                                    BorderThickness="2" 
+                                                                    BorderBrush="White">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+
+                        </Setter>
+                    </Style>
+                </iconPacks:PackIconMaterial.Style>
+            </iconPacks:PackIconMaterial>
+        </Grid>
+    </Grid>
+</Window>
+ 
