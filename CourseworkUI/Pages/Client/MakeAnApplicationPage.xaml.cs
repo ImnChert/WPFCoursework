@@ -1,4 +1,5 @@
 ﻿using CourseworkUI.Models;
+using CourseworkUI.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,12 +23,13 @@ namespace CourseworkUI.Pages.Client
 	/// </summary>
 	public partial class MakeAnApplicationPage : Page
 	{
-		public ObservableCollection<TypeOfInsurance> TupesOfInsurance { get; set; }
+		private ApplicationContext _db = new ApplicationContext();
+		public List<TypeOfInsurance> TupesOfInsurance { get; set; }
 
 		public MakeAnApplicationPage()
 		{
 			InitializeComponent();
-			///TupesOfInsurance = ////
+			TupesOfInsurance = _db.TypesOfInsurances.Select(x=>x).ToList();
 			ListTypeOfInsutrance.ItemsSource = TupesOfInsurance;
 			ListTypeOfInsutrance.DisplayMemberPath = "Name";
 		}
@@ -37,6 +39,20 @@ namespace CourseworkUI.Pages.Client
 			var item = (TypeOfInsurance)ListTypeOfInsutrance.SelectedItem;
 			NameText.Text = item.Name;
 			DescriprionText.Text = item.Descriprion;
+			CostText.Text = item.InsuranceAmount.ToString();
+			FirstBox.Text = OutputText(item.IncludedRisks);
+		}
+
+		private string OutputText(ICollection<InsuranceRisk> insuranceRisks)
+		{
+			var s = "";
+
+			foreach(var i in insuranceRisks)
+			{
+				s += i.Name + "\n";
+			}
+
+			return s;
 		}
 	}
 }

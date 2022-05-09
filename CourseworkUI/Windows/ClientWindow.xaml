@@ -93,8 +93,16 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Name="GeneralInformationButton" Content="General information" Style="{StaticResource BlackAndWhite}" Grid.Column="0"/>
-            <Button Name="MakeAnApplicationButton" Content="Make an application" Style="{StaticResource BlackAndWhite}" Grid.Column="1"/>
+            <Button Name="GeneralInformationButton" 
+                    Content="General information" 
+                    Style="{StaticResource BlackAndWhite}" 
+                    Grid.Column="0"
+                    Command="{Binding OpenGeneralInformationPage}"/>
+            <Button Name="MakeAnApplicationButton" 
+                    Content="Make an application" 
+                    Style="{StaticResource BlackAndWhite}" 
+                    Grid.Column="1"
+                    Command="{Binding OpenMakeAnApplicationPage}"/>
             <Button Name="AccountButton" Style="{StaticResource BlackAndWhite}" Grid.Column="5"/>
             <iconPacks:PackIconMaterial Grid.Column="5" Kind="Account"
                                                Height="50"

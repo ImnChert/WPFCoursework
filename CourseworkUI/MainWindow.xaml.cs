@@ -95,7 +95,6 @@ namespace CourseworkUI
 				{ "NaturalPerson", () => { OpenNewWindow(new ClientWindow(DataBase)); } },
 				{ "LegalPerson", () => { OpenNewWindow(new ClientWindow(DataBase)); } },
 				{ "Accountant", () => { OpenNewWindow(new ClientWindow(DataBase)); } },
-				{ "Accountant", () => { OpenNewWindow(new ClientWindow(DataBase)); } },
 				{ "InsuranceAgent", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
 				{ "Manager", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
 				{ "Admin", () => { OpenNewWindow(new ClientWindow(DataBase)); }},

@@ -38,11 +38,6 @@ namespace CourseworkUI.Pages.Register
 			txtPas.ShadowText().CheckGotFocus("Password");
 		}
 
-		private void Address_GotFocus(object sender, RoutedEventArgs e)
-		{
-			Address.ShadowText().CheckGotFocus("Address");
-		}
-
 		private void TxtUser_LostFocus(object sender, RoutedEventArgs e)
 		{
 			txtUser.ShadowText().CheckLostFocus("Username");
@@ -53,9 +48,24 @@ namespace CourseworkUI.Pages.Register
 			txtPas.ShadowText().CheckLostFocus("Password");
 		}
 
-		private void Address_LostFocus(object sender, RoutedEventArgs e)
+		private void HouseNumber_GotFocus(object sender, RoutedEventArgs e)
 		{
-			Address.ShadowText().CheckLostFocus("Address");
+			HouseNumber.ShadowText().CheckGotFocus("House number");
+		}
+
+		private void HouseNumber_LostFocus(object sender, RoutedEventArgs e)
+		{
+			HouseNumber.ShadowText().CheckLostFocus("House number");
+		}
+
+		private void LocalityText_LostFocus(object sender, RoutedEventArgs e)
+		{
+			LocalityText.ShadowText().CheckLostFocus("Locality");
+		}
+
+		private void LocalityText_GotFocus(object sender, RoutedEventArgs e)
+		{
+			LocalityText.ShadowText().CheckGotFocus("Locality");
 		}
 
 		private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -63,14 +73,16 @@ namespace CourseworkUI.Pages.Register
 			TxtNameOfOrganization.Rules().MinCharacters(5).Validate();
 			txtUser.Rules().MinCharacters(5).Validate();
 			txtPas.Rules().MinCharacters(5).Validate();
-			Address.Rules().MinCharacters(5).Validate();
+			LocalityText.Rules().MinCharacters(5).Validate();
+			HouseNumber.Rules().MinCharacters(5).Validate();
 
 			if (TxtNameOfOrganization.IsCorrect() &&
 				txtUser.IsCorrect() &&
 				txtPas.IsCorrect() &&
-				Address.IsCorrect())
+				HouseNumber.IsCorrect() &&
+				LocalityText.IsCorrect())
 			{
-				var legalPerson = new LegalPerson(txtUser.Text, txtPas.Password, TxtNameOfOrganization.Text, Address.Text);
+				var legalPerson = new LegalPerson(txtUser.Text, txtPas.Password, TxtNameOfOrganization.Text, LocalityText.Text, HouseNumber.Text);
 
 				DataBase.LegalPersons.Add(legalPerson);
 				DataBase.SaveChanges();

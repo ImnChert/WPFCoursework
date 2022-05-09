@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CourseworkUI.Pages.Register"
       xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="500"
+      d:DesignHeight="550" d:DesignWidth="500"
       Title="NaturalPersonPage"
       Name="Window" >
 
@@ -103,9 +103,9 @@
                     Opacity="0.5"/>
 
                     <StackPanel Orientation="Horizontal" Margin="-10,20,0,0">
-                        <TextBox x:Name="Address" FontFamily="Helvetica"
+                        <TextBox x:Name="LocalityText" FontFamily="Helvetica"
                          FontWeight="Light"
-                         Text="Address"
+                         Text="Locality"
                          FontSize="20"
                          HorizontalAlignment="Center"
                          Foreground="Black"
@@ -115,7 +115,32 @@
                          HorizontalContentAlignment="Left"
                          Opacity="0.5"
                          Height="25"
-                             Margin="63,0,0,0" GotFocus="Address_GotFocus" LostFocus="Address_LostFocus"/>
+                             Margin="63,0,0,0" GotFocus="LocalityText_GotFocus" LostFocus="LocalityText_LostFocus"/>
+                        <iconPacks:PackIconMaterial Kind="City"
+                                                 Height="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                    <Border Width="250"
+                    Height="2"
+                    Background="Black"
+                    Opacity="0.5"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="-10,20,0,0">
+                        <TextBox x:Name="HouseNumber" FontFamily="Helvetica"
+                         FontWeight="Light"
+                         Text="House number"
+                         FontSize="20"
+                         HorizontalAlignment="Center"
+                         Foreground="Black"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Width="235"
+                         HorizontalContentAlignment="Left"
+                         Opacity="0.5"
+                         Height="25"
+                             Margin="63,0,0,0" GotFocus="HouseNumber_GotFocus" LostFocus="HouseNumber_LostFocus"/>
                         <iconPacks:PackIconMaterial Kind="Home"
                                                  Height="20"
                                                VerticalAlignment="Center"

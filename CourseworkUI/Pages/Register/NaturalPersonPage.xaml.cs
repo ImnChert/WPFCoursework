@@ -28,11 +28,6 @@ namespace CourseworkUI.Pages.Register
 			txtPas.ShadowText().CheckGotFocus("Password");
 		}
 
-		private void Address_GotFocus(object sender, RoutedEventArgs e)
-		{
-			Address.ShadowText().CheckGotFocus("Address");
-		}
-
 		private void TxtUser_LostFocus(object sender, RoutedEventArgs e)
 		{
 			txtUser.ShadowText().CheckLostFocus("Username");
@@ -41,11 +36,6 @@ namespace CourseworkUI.Pages.Register
 		private void TxtPas_LostFocus(object sender, RoutedEventArgs e)
 		{
 			txtPas.ShadowText().CheckLostFocus("Password");
-		}
-
-		private void Address_LostFocus(object sender, RoutedEventArgs e)
-		{
-			Address.ShadowText().CheckLostFocus("Address");
 		}
 
 		private void txtFirstName_GotFocus(object sender, RoutedEventArgs e)
@@ -85,16 +75,21 @@ namespace CourseworkUI.Pages.Register
 			txtMiddleName.Rules().MinCharacters(5).Validate();
 			txtUser.Rules().MinCharacters(5).Validate();
 			txtPas.Rules().MinCharacters(5).Validate();
-			Address.Rules().MinCharacters(5).Validate();
+			LocalityText.Rules().MinCharacters(5).Validate();
+			HouseNumber.Rules().MinCharacters(5).Validate();
+			ApartmentNumber.Rules().MinCharacters(5).Validate();
 
 			if (txtFirstName.IsCorrect() &&
 				txtLastName.IsCorrect() &&
 				txtMiddleName.IsCorrect() &&
 				txtUser.IsCorrect() &&
 				txtPas.IsCorrect() &&
-				Address.IsCorrect())
+				LocalityText.IsCorrect() &&
+				HouseNumber.IsCorrect() &&
+				ApartmentNumber.IsCorrect())
 			{
-				var naturalPesron = new NaturalPerson(txtUser.Text, txtPas.Password, txtFirstName.Text, txtLastName.Text, txtMiddleName.Text, Address.Text);
+				var naturalPesron = new NaturalPerson(txtUser.Text, txtPas.Password, txtFirstName.Text, txtLastName.Text, txtMiddleName.Text, 
+					LocalityText.Text, HouseNumber.Text, ApartmentNumber.Text);
 
 				DataBase.NaturalPersons.Add(naturalPesron);
 				DataBase.SaveChanges();
@@ -105,6 +100,36 @@ namespace CourseworkUI.Pages.Register
 				window.Show();
 				Application.Current.Windows[0].Close();
 			}
+		}
+
+		private void HouseNumber_GotFocus(object sender, RoutedEventArgs e)
+		{
+			HouseNumber.ShadowText().CheckGotFocus("House number");
+		}
+
+		private void HouseNumber_LostFocus(object sender, RoutedEventArgs e)
+		{
+			HouseNumber.ShadowText().CheckLostFocus("House number");
+		}
+
+		private void LocalityText_LostFocus(object sender, RoutedEventArgs e)
+		{
+			LocalityText.ShadowText().CheckLostFocus("Locality");
+		}
+
+		private void LocalityText_GotFocus(object sender, RoutedEventArgs e)
+		{
+			LocalityText.ShadowText().CheckGotFocus("Locality");
+		}
+
+		private void ApartmentNumber_GotFocus(object sender, RoutedEventArgs e)
+		{
+			ApartmentNumber.ShadowText().CheckGotFocus("Apartment number");
+		}
+
+		private void ApartmentNumber_LostFocus(object sender, RoutedEventArgs e)
+		{
+			ApartmentNumber.ShadowText().CheckLostFocus("Apartment number");
 		}
 	}
 }

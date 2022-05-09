@@ -5,12 +5,14 @@ namespace CourseworkUI.Models.Users.Clients
 	[Table("Client")]
 	public class Client : User
 	{
-		public string Address { get; set; }
+		public string Locality { get; set; }
+		public string HouseNumber { get; set; }
 
-		public Client(string username, string password, string address)
+		public Client(string username, string password, string locality, string houseNumber)
 			: base(username, password)
 		{
-			Address = address;
+			Locality = locality;
+			HouseNumber = houseNumber;	
 		}
 
 		public override string? ToString() => "Client";

@@ -39,9 +39,8 @@
                 <ListBox Name="ListTypeOfInsutrance" Margin="5" SelectionChanged="ListTypeOfInsutrance_SelectionChanged" />
 
                 <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" >
-                    <Button Margin="2,15,0,0"  Height="40" Width="230"  Content="Получить список машин" />
-                    <Button Margin="2,10,0,0"  Height="40" Width="230"  Content="Удалить"  />
-                    <Button Margin="2,10,0,0" Height="40" Width="230" Content="Добавить"  />
+                    <Button Margin="2,15,0,0"  Height="40" Width="230"  Content="Apply for insurance" />
+
                 </StackPanel>
             </Grid>
 
@@ -60,13 +59,27 @@
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="Auto"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
+                        <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
 
-                    <TextBlock Margin="7">Марка:</TextBlock>
+                    <TextBlock Margin="7">Name:</TextBlock>
                     <TextBox Margin="5" Grid.Column="1" Name="NameText"></TextBox>
-                    <TextBlock Margin="7" Grid.Row="2">Цена (руб):</TextBlock>
-                    <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Name="CostText"></TextBox>
+                    <TextBlock Margin="7" Grid.Row="2">Coast (bel. rub):</TextBlock>
+                    <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Name="CostText"/>
+                    <TextBlock Margin="7" Grid.Column="0" Grid.Row="3">Risks:</TextBlock>
+                    <TextBox Grid.Row="3" 
+                             Grid.RowSpan="3"
+                             Text=""
+                             Name="FirstBox"
+                             FontFamily="helvetica"
+                             FontSize="18"
+                             VerticalScrollBarVisibility="Auto"
+                             TextWrapping="Wrap"
+                             AcceptsReturn="True"
+                             Background="Transparent" 
+                             Foreground="WhiteSmoke" Margin="5,7,5,0" Height="78" VerticalAlignment="Top" Grid.Column="1"/>
                     <StackPanel Grid.Column="2" Grid.RowSpan="10">
+
                         <TextBlock Margin="7,7,7,0" Grid.Row="3">Описание:</TextBlock>
                         <TextBox Margin="7" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" 
                          VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" 

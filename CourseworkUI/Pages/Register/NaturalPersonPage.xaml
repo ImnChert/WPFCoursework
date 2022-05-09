@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CourseworkUI.Pages.Register" 
       xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="500"
+      d:DesignHeight="550" d:DesignWidth="500"
       Title="NaturalPersonPage"
       Name="Window" >
 
@@ -25,7 +25,7 @@
         <Grid Grid.Column="2" Grid.Row ="2">
             <Grid Grid.Row="2" Grid.Column="2">
                 <StackPanel Grid.Row="2">
-                    <StackPanel Orientation="Horizontal" Margin="-10,50,0,0">
+                    <StackPanel Orientation="Horizontal" Margin="-10,10,0,0">
                         <TextBox x:Name="txtFirstName" FontFamily="Helvetica"
                          FontWeight="Light"
                          Text="First name"
@@ -151,9 +151,9 @@
                     Opacity="0.5"/>
 
                     <StackPanel Orientation="Horizontal" Margin="-10,20,0,0">
-                        <TextBox x:Name="Address" FontFamily="Helvetica"
+                        <TextBox x:Name="LocalityText" FontFamily="Helvetica"
                          FontWeight="Light"
-                         Text="Address"
+                         Text="Locality"
                          FontSize="20"
                          HorizontalAlignment="Center"
                          Foreground="Black"
@@ -163,7 +163,32 @@
                          HorizontalContentAlignment="Left"
                          Opacity="0.5"
                          Height="25"
-                             Margin="63,0,0,0" GotFocus="Address_GotFocus" LostFocus="Address_LostFocus"/>
+                             Margin="63,0,0,0" GotFocus="LocalityText_GotFocus" LostFocus="LocalityText_LostFocus"/>
+                        <iconPacks:PackIconMaterial Kind="City"
+                                                 Height="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                    </StackPanel>
+
+                    <Border Width="250"
+                    Height="2"
+                    Background="Black"
+                    Opacity="0.5"/>
+
+                    <StackPanel Orientation="Horizontal" Margin="-10,20,0,0">
+                        <TextBox x:Name="HouseNumber" FontFamily="Helvetica"
+                         FontWeight="Light"
+                         Text="House number"
+                         FontSize="20"
+                         HorizontalAlignment="Center"
+                         Foreground="Black"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Width="235"
+                         HorizontalContentAlignment="Left"
+                         Opacity="0.5"
+                         Height="25"
+                             Margin="63,0,0,0" GotFocus="HouseNumber_GotFocus" LostFocus="HouseNumber_LostFocus"/>
                         <iconPacks:PackIconMaterial Kind="Home"
                                                  Height="20"
                                                VerticalAlignment="Center"
@@ -175,7 +200,30 @@
                     Background="Black"
                     Opacity="0.5"/>
 
+                    <StackPanel Orientation="Horizontal" Margin="-10,20,0,0">
+                        <TextBox x:Name="ApartmentNumber" FontFamily="Helvetica"
+                         FontWeight="Light"
+                         Text="Apartment number"
+                         FontSize="20"
+                         HorizontalAlignment="Center"
+                         Foreground="Black"
+                         Background="Transparent"
+                         BorderThickness="0"
+                         Width="235"
+                         HorizontalContentAlignment="Left"
+                         Opacity="0.5"
+                         Height="25"
+                             Margin="63,0,0,0" GotFocus="ApartmentNumber_GotFocus" LostFocus="ApartmentNumber_LostFocus"/>
+                        <iconPacks:PackIconMaterial Kind="Door"
+                                                 Height="20"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center"/>
+                    </StackPanel>
 
+                    <Border Width="250"
+                    Height="2"
+                    Background="Black"
+                    Opacity="0.5"/>
 
                     <StackPanel Orientation="Horizontal" Margin="0,20,0,0" HorizontalAlignment="Center">
                         <Button Width="100" Height="40" Content ="COMPLETE" Name="RegisterButton" Click="RegisterButton_Click"/>

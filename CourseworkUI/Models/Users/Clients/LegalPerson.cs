@@ -8,8 +8,8 @@ namespace CourseworkUI.Models.Clients
 	{
 		public string NameOfOrganization { get; set; }
 
-		public LegalPerson(string username, string password, string nameOfOrganization, string address)
-			: base(username, password, address)
+		public LegalPerson(string username, string password, string nameOfOrganization, string locality, string houseNumber)
+			: base(username, password, locality, houseNumber)
 		{
 			NameOfOrganization = nameOfOrganization;
 		}

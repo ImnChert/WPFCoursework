@@ -22,12 +22,11 @@ namespace CourseworkUI.Services
 
 		public ApplicationContext()
 		{
-			Database.EnsureCreated();
 		}
 
 		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 		{
-			optionsBuilder.UseSqlServer(@"Server=WIN-LVC9G8MVV42\SQLEXPRESS;Database=dbcoursework;Trusted_Connection=True;");
+			optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database=coursework;Trusted_Connection=True;");
 			optionsBuilder.UseLazyLoadingProxies();
 		}
 

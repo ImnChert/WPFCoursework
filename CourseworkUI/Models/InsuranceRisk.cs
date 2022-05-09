@@ -8,13 +8,11 @@ namespace CourseworkUI.Models
 	{
 		public int Id { get; set; }
 		public string Name { get; set; }
-		public string Descriprion { get; set; }
 		public virtual ICollection<TypeOfInsurance> ConnectedTypesOfInsurance { get; } = new List<TypeOfInsurance>();
 
-		public InsuranceRisk(string name, string descriprion)
+		public InsuranceRisk(string name)
 		{
 			Name = name;
-			Descriprion = descriprion;
 		}
 
 		public event PropertyChangedEventHandler? PropertyChanged;
