@@ -16,8 +16,6 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-
-
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
@@ -39,8 +37,12 @@
                 <ListBox Name="ListTypeOfInsutrance" Margin="5" SelectionChanged="ListTypeOfInsutrance_SelectionChanged" />
 
                 <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" >
-                    <Button Margin="2,15,0,0"  Height="40" Width="230"  Content="Apply for insurance" />
-
+                    <Button Margin="2,15,0,0"  
+                            Height="40" 
+                            Width="230"  
+                            Content="Apply for insurance" 
+                            Name="ApplyButton" Click="ApplyButton_Click"
+                            />
                 </StackPanel>
             </Grid>
 

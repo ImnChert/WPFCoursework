@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseworkUI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220509172125_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220511103546_CreateDatabase")]
+    partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,6 +22,34 @@ namespace CourseworkUI.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("CourseworkUI.Models.ClientApplication", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InsuranceAgentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TypeOfInsuranceId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("InsuranceAgentId");
+
+                    b.HasIndex("TypeOfInsuranceId");
+
+                    b.ToTable("ClientApplications");
+                });
 
             modelBuilder.Entity("CourseworkUI.Models.InsuranceRisk", b =>
                 {
@@ -41,6 +69,21 @@ namespace CourseworkUI.Migrations
                         .IsUnique();
 
                     b.ToTable("InsuranceRisks");
+                });
+
+            modelBuilder.Entity("CourseworkUI.Models.Message", b =>
+                {
+                    b.Property<int>("FromId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("ToId")
+                        .HasColumnType("int");
+
+                    b.ToTable("Messages");
                 });
 
             modelBuilder.Entity("CourseworkUI.Models.TypeOfInsurance", b =>
@@ -68,6 +111,10 @@ namespace CourseworkUI.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("Name")
@@ -86,7 +133,7 @@ namespace CourseworkUI.Migrations
 
                     b.Property<string>("Password")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Username")
                         .IsRequired()
@@ -94,7 +141,7 @@ namespace CourseworkUI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Username", "Password")
+                    b.HasIndex("Username")
                         .IsUnique();
 
                     b.ToTable("Users");
@@ -130,6 +177,9 @@ namespace CourseworkUI.Migrations
                     b.Property<string>("MiddleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Salary")
+                        .HasColumnType("decimal(18,2)");
 
                     b.ToTable("Employees");
                 });
@@ -187,10 +237,6 @@ namespace CourseworkUI.Migrations
                 {
                     b.HasBaseType("CourseworkUI.Models.Employees.Employee");
 
-                    b.Property<string>("S")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.ToTable("Accountants");
                 });
 
@@ -213,6 +259,33 @@ namespace CourseworkUI.Migrations
                     b.HasBaseType("CourseworkUI.Models.Employees.Employee");
 
                     b.ToTable("Managers");
+                });
+
+            modelBuilder.Entity("CourseworkUI.Models.ClientApplication", b =>
+                {
+                    b.HasOne("CourseworkUI.Models.Users.Clients.Client", "Client")
+                        .WithMany()
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CourseworkUI.Models.Employees.InsuranceAgent", "InsuranceAgent")
+                        .WithMany()
+                        .HasForeignKey("InsuranceAgentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CourseworkUI.Models.TypeOfInsurance", "TypeOfInsurance")
+                        .WithMany()
+                        .HasForeignKey("TypeOfInsuranceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+
+                    b.Navigation("InsuranceAgent");
+
+                    b.Navigation("TypeOfInsurance");
                 });
 
             modelBuilder.Entity("InsuranceRiskTypeOfInsurance", b =>

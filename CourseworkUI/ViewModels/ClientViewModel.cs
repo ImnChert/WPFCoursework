@@ -11,6 +11,7 @@ namespace CourseworkUI.ViewModels
 		private Page _generalInformationPage = new GeneralInformationPage();
 		private Page _makeAnApplicationPage = new MakeAnApplicationPage();
 		private Page _accountPage = new AccountPage();
+		private Page _applyForInsurancePage = new ApplyForInsurancePage();
 		private Page _curPage = new GeneralInformationPage();
 
 		public Page CurPage
@@ -18,6 +19,7 @@ namespace CourseworkUI.ViewModels
 			get => _curPage;
 			set => Set(ref _curPage, value);
 		}
+
 		public ICommand OpenGeneralInformationPage
 			=> new RelayCommand(() => CurPage = _generalInformationPage);
 
@@ -26,5 +28,7 @@ namespace CourseworkUI.ViewModels
 
 		public ICommand OpenAccountPage
 			=> new RelayCommand(() => CurPage = _accountPage);
+		public ICommand OpenApplyForInsurancePage
+			   => new RelayCommand(() => CurPage = _applyForInsurancePage);
 	}
 }

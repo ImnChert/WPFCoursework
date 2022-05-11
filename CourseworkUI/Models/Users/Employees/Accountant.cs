@@ -5,11 +5,10 @@ namespace CourseworkUI.Models.Employees
 	[Table("Accountants")]
 	public class Accountant : Employee
 	{
-		public string S { get; set; }
-		public Accountant(string username, string password, string firstName, string lastName, string middleName, string s)
-			: base(username, password, firstName, lastName, middleName)
+		public Accountant(string username, string password, string firstName, string lastName, string middleName, decimal salary)
+			: base(username, password, firstName, lastName, middleName, salary)
 		{
-			S = s;
+			
 		}
 	}
 }

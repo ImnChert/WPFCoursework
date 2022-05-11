@@ -1,8 +1,13 @@
 ﻿using CourseworkUI.Models;
+using CourseworkUI.Models.Clients;
 using CourseworkUI.Services;
+using CourseworkUI.Windows;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+ 
 
 namespace CourseworkUI.Pages.Client
 {
@@ -12,16 +17,32 @@ namespace CourseworkUI.Pages.Client
 	public partial class GeneralInformationPage : Page
 	{
 		private ApplicationContext _db = new ApplicationContext();
+		private User _client;
 
 		public GeneralInformationPage()
 		{
 			InitializeComponent();
+			var window = Application.Current.Windows[0];
+			if(window is not ClientWindow)
+				window = Application.Current.Windows[2];
+			var s = (ClientWindow)window;
+			_client = s.Client;
 			CreateViews();
 		}
 
 		private void CreateViews()
 		{
-			var views = _db.TypesOfInsurances.Include(p => p.IncludedRisks).Take(4).ToList();
+			List<TypeOfInsurance> views = new List<TypeOfInsurance>();
+
+			if( _client is NaturalPerson )
+			{
+				views = _db.TypesOfInsurances.Where(x => x.Type == "Natural").Include(p => p.IncludedRisks).Take(4).ToList();
+			}
+			else if( _client is LegalPerson )
+			{
+				views = _db.TypesOfInsurances.Where(x => x.Type == "Legal").Include(p => p.IncludedRisks).Take(4).ToList();
+			}
+			 
 
 			AddText(FirstText, FirstBox, views[0]);
 			AddText(SecondText, SecondBox, views[1]);

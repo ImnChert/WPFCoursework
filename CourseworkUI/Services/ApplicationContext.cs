@@ -19,6 +19,8 @@ namespace CourseworkUI.Services
 		public DbSet<Manager> Managers { get; set; } = null!;
 		public DbSet<TypeOfInsurance> TypesOfInsurances { get; set; } = null!;
 		public DbSet<InsuranceRisk> InsuranceRisks { get; set; } = null!;
+		public DbSet<ClientApplication> ClientApplications { get; set; } = null!;
+		public DbSet<Message> Messages { get; set; } = null!;
 
 		public ApplicationContext()
 		{
@@ -33,7 +35,7 @@ namespace CourseworkUI.Services
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<User>()
-				.HasIndex(p => new { p.Username, p.Password })
+				.HasIndex(p => new { p.Username })
 				.IsUnique();
 			modelBuilder.Entity<TypeOfInsurance>()
 				.HasIndex(p => new { p.Name })

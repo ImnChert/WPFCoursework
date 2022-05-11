@@ -103,6 +103,11 @@
                     Style="{StaticResource BlackAndWhite}" 
                     Grid.Column="1"
                     Command="{Binding OpenMakeAnApplicationPage}"/>
+            <Button Name="Apply" 
+                    Content="Apply for insurance" 
+                    Style="{StaticResource BlackAndWhite}" 
+                    Grid.Column="2"
+                    Command="{Binding OpenApplyForInsurancePage}"/>
             <Button Name="AccountButton" Style="{StaticResource BlackAndWhite}" Grid.Column="5"/>
             <iconPacks:PackIconMaterial Grid.Column="5" Kind="Account"
                                                Height="50"

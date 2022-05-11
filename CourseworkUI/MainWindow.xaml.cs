@@ -1,4 +1,6 @@
-﻿using CourseworkUI.Models.Clients;
+﻿using CourseworkUI.Models;
+using CourseworkUI.Models.Clients;
+using CourseworkUI.Models.Users.Clients;
 using CourseworkUI.Services;
 using CourseworkUI.Windows;
 using System;
@@ -15,6 +17,7 @@ namespace CourseworkUI
 	public partial class MainWindow : Window
 	{
 		public ApplicationContext DataBase = new ApplicationContext();
+		private User _user = null!;
 
 		public MainWindow()
 		{
@@ -40,7 +43,7 @@ namespace CourseworkUI
 		private void Register_Click(object sender, RoutedEventArgs e)
 		{
 			RegisterWindow window = new RegisterWindow(DataBase);
-			Application.Current.MainWindow = window;
+			System.Windows.Application.Current.MainWindow = window;
 
 			window.Show();
 			this.Close();
@@ -69,12 +72,12 @@ namespace CourseworkUI
 
 		private void Login_Click(object sender, RoutedEventArgs e)
 		{
-			var user = DataBase.Users.FirstOrDefault(p => p.Username == txtUser.Text && p.Password == txrPas.Password);
+			_user = DataBase.Users.FirstOrDefault(p => p.Username == txtUser.Text && p.Password == txrPas.Password);
 
-			if (user != null)
+			if (_user != null)
 			{
 				Dictionary<string, Action> dictionary = GetDictionary();
-				dictionary[user.ToString()]();
+				dictionary[_user.ToString()]();
 			}
 			else
 			{
@@ -92,12 +95,12 @@ namespace CourseworkUI
 		{
 			return new Dictionary<string, Action>()
 			{
-				{ "NaturalPerson", () => { OpenNewWindow(new ClientWindow(DataBase)); } },
-				{ "LegalPerson", () => { OpenNewWindow(new ClientWindow(DataBase)); } },
-				{ "Accountant", () => { OpenNewWindow(new ClientWindow(DataBase)); } },
-				{ "InsuranceAgent", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
-				{ "Manager", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
-				{ "Admin", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
+				{ "NaturalPerson", () => { OpenNewWindow(new ClientWindow(DataBase, (Client)_user)); } },
+				{ "LegalPerson", () => { OpenNewWindow(new ClientWindow(DataBase, (Client)_user)); } },
+				//{ "Accountant", () => { OpenNewWindow(new ClientWindow(DataBase)); } },
+				//{ "InsuranceAgent", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
+				//{ "Manager", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
+				//{ "Admin", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
 			};
 		}
 	}

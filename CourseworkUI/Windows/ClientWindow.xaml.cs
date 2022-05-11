@@ -1,4 +1,5 @@
 ﻿using CourseworkUI.Interfaces;
+using CourseworkUI.Models.Users.Clients;
 using CourseworkUI.Services;
 using System;
 using System.Collections.Generic;
@@ -22,10 +23,12 @@ namespace CourseworkUI.Windows
 	public partial class ClientWindow : Window, IApplicationContext
 	{
 		public ApplicationContext DataBase { get; } = null!;
+		public Client Client { get; } 
 
-		public ClientWindow(ApplicationContext dataBase)
+		public ClientWindow(ApplicationContext dataBase, Client client)
 		{
 			DataContext = dataBase;
+			Client = client;
 			InitializeComponent();
 		}
 

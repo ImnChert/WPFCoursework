@@ -1,5 +1,7 @@
 ﻿using CourseworkUI.Models;
 using CourseworkUI.Services;
+using CourseworkUI.ViewModels;
+using CourseworkUI.Windows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,6 +55,16 @@ namespace CourseworkUI.Pages.Client
 			}
 
 			return s;
+		}
+
+		private void ApplyButton_Click(object sender, RoutedEventArgs e)
+		{
+			var page = new ApplyForInsurancePage();
+			var window = (ClientWindow)Application.Current.Windows[0];
+			var s = window.Frame;
+			window.Frame.Content = page;
+			window.Frame = s;
+			//page.NavigationService;
 		}
 	}
 }

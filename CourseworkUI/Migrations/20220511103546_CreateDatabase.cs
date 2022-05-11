@@ -4,7 +4,7 @@
 
 namespace CourseworkUI.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class CreateDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -22,6 +22,18 @@ namespace CourseworkUI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Messages",
+                columns: table => new
+                {
+                    FromId = table.Column<int>(type: "int", nullable: false),
+                    ToId = table.Column<int>(type: "int", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TypesOfInsurances",
                 columns: table => new
                 {
@@ -31,7 +43,8 @@ namespace CourseworkUI.Migrations
                     Descriprion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InsuranceAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CostOfTheInsuranceContract = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CoefficientOfIncrease = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                    CoefficientOfIncrease = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -45,7 +58,7 @@ namespace CourseworkUI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -101,7 +114,8 @@ namespace CourseworkUI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    MiddleName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Salary = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -154,8 +168,7 @@ namespace CourseworkUI.Migrations
                 name: "Accountants",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
-                    S = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -215,6 +228,54 @@ namespace CourseworkUI.Migrations
                         principalColumn: "Id");
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ClientApplications",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    InsuranceAgentId = table.Column<int>(type: "int", nullable: false),
+                    TypeOfInsuranceId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ClientApplications", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ClientApplications_Client_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Client",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClientApplications_InsuranceAgents_InsuranceAgentId",
+                        column: x => x.InsuranceAgentId,
+                        principalTable: "InsuranceAgents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ClientApplications_TypesOfInsurances_TypeOfInsuranceId",
+                        column: x => x.TypeOfInsuranceId,
+                        principalTable: "TypesOfInsurances",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClientApplications_ClientId",
+                table: "ClientApplications",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClientApplications_InsuranceAgentId",
+                table: "ClientApplications",
+                column: "InsuranceAgentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ClientApplications_TypeOfInsuranceId",
+                table: "ClientApplications",
+                column: "TypeOfInsuranceId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_InsuranceRisks_Name",
                 table: "InsuranceRisks",
@@ -233,9 +294,9 @@ namespace CourseworkUI.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Users_Username_Password",
+                name: "IX_Users_Username",
                 table: "Users",
-                columns: new[] { "Username", "Password" },
+                column: "Username",
                 unique: true);
         }
 
@@ -248,7 +309,7 @@ namespace CourseworkUI.Migrations
                 name: "Admins");
 
             migrationBuilder.DropTable(
-                name: "InsuranceAgents");
+                name: "ClientApplications");
 
             migrationBuilder.DropTable(
                 name: "InsuranceRiskTypeOfInsurance");
@@ -260,7 +321,13 @@ namespace CourseworkUI.Migrations
                 name: "Managers");
 
             migrationBuilder.DropTable(
+                name: "Messages");
+
+            migrationBuilder.DropTable(
                 name: "NaturalPersons");
+
+            migrationBuilder.DropTable(
+                name: "InsuranceAgents");
 
             migrationBuilder.DropTable(
                 name: "InsuranceRisks");
@@ -269,10 +336,10 @@ namespace CourseworkUI.Migrations
                 name: "TypesOfInsurances");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "Client");
 
             migrationBuilder.DropTable(
-                name: "Client");
+                name: "Employees");
 
             migrationBuilder.DropTable(
                 name: "Users");
