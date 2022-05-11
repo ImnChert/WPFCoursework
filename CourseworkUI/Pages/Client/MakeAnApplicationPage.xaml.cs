@@ -1,22 +1,10 @@
 ﻿using CourseworkUI.Models;
 using CourseworkUI.Services;
-using CourseworkUI.ViewModels;
 using CourseworkUI.Windows;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CourseworkUI.Pages.Client
 {
@@ -25,13 +13,13 @@ namespace CourseworkUI.Pages.Client
 	/// </summary>
 	public partial class MakeAnApplicationPage : Page
 	{
-		private ApplicationContext _db = new ApplicationContext();
+		private ApplicationContext _database = new ApplicationContext();
 		public List<TypeOfInsurance> TupesOfInsurance { get; set; }
 
 		public MakeAnApplicationPage()
 		{
 			InitializeComponent();
-			TupesOfInsurance = _db.TypesOfInsurances.Select(x=>x).ToList();
+			TupesOfInsurance = _database.TypesOfInsurances.Select(x=>x).ToList();
 			ListTypeOfInsutrance.ItemsSource = TupesOfInsurance;
 			ListTypeOfInsutrance.DisplayMemberPath = "Name";
 		}
@@ -59,12 +47,8 @@ namespace CourseworkUI.Pages.Client
 
 		private void ApplyButton_Click(object sender, RoutedEventArgs e)
 		{
-			var page = new ApplyForInsurancePage();
 			var window = (ClientWindow)Application.Current.Windows[0];
-			var s = window.Frame;
-			window.Frame.Content = page;
-			window.Frame = s;
-			//page.NavigationService;
+			window.clientView.OpenApplyForInsurancePage.Execute("");
 		}
 	}
 }

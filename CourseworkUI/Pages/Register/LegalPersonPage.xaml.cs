@@ -1,5 +1,4 @@
-﻿using CourseworkUI.Interfaces;
-using CourseworkUI.Models.Clients;
+﻿using CourseworkUI.Models.Clients;
 using CourseworkUI.Services;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,9 +8,9 @@ namespace CourseworkUI.Pages.Register
 	/// <summary>
 	/// Interaction logic for LegalPersonPage.xaml
 	/// </summary>
-	public partial class LegalPersonPage : Page, IApplicationContext
+	public partial class LegalPersonPage : Page
 	{
-		public ApplicationContext DataBase { get; } = GetApplicationContext.GetAppContext();
+		private ApplicationContext _database { get; } = new ApplicationContext();
 
 		public LegalPersonPage()
 		{
@@ -84,8 +83,8 @@ namespace CourseworkUI.Pages.Register
 			{
 				var legalPerson = new LegalPerson(txtUser.Text, txtPas.Password, TxtNameOfOrganization.Text, LocalityText.Text, HouseNumber.Text);
 
-				DataBase.LegalPersons.Add(legalPerson);
-				DataBase.SaveChanges();
+				_database.LegalPersons.Add(legalPerson);
+				_database.SaveChanges();
 
 				var window = new MainWindow();
 				Application.Current.MainWindow = window;

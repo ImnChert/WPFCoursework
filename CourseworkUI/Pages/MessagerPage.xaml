@@ -9,6 +9,55 @@
       Title="MessagerPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="110"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="10"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBox Text="Your message"
+                     Background="Transparent"
+                     Foreground="White"
+                     FontSize="24"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Center"
+                     Grid.Row="0"
+                     Grid.Column="2"
+                     Grid.ColumnSpan="1"/>
+            <ListBox Name="ListMEssage" 
+                     Grid.Column="1"
+                     Grid.Row="1"
+                     Grid.ColumnSpan="1"
+                     Grid.RowSpan="3"/>
+            <TextBlock Grid.Row="1" 
+                       Grid.Column="2"
+                       Grid.ColumnSpan="2"
+                       Grid.RowSpan="3"
+                       Background="White"
+                      />
+            <Button Grid.Row="3"
+                    Grid.Column="4"
+                    Height="60"
+                    Width="160"
+                    Content="Answer"
+                    FontSize="20"/>
+        </Grid>
     </Grid>
 </Page>

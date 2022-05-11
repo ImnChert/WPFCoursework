@@ -4,6 +4,7 @@ using CourseworkUI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseworkUI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20220511105443_Policy")]
+    partial class Policy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,10 +80,6 @@ namespace CourseworkUI.Migrations
                     b.Property<int>("FromId")
                         .HasColumnType("int");
 
-                    b.Property<string>("FromType")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -103,9 +101,6 @@ namespace CourseworkUI.Migrations
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("CostOfTheInsuranceContract")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<DateTime>("DateOfConclusion")
                         .HasColumnType("datetime2");
 
@@ -114,9 +109,6 @@ namespace CourseworkUI.Migrations
 
                     b.Property<int>("InsuranceAgentId")
                         .HasColumnType("int");
-
-                    b.Property<decimal>("InsuranceAmount")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("TypeOfInsuranceId")
                         .HasColumnType("int");

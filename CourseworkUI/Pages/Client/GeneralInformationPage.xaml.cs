@@ -16,18 +16,22 @@ namespace CourseworkUI.Pages.Client
 	/// </summary>
 	public partial class GeneralInformationPage : Page
 	{
-		private ApplicationContext _db = new ApplicationContext();
+		private ApplicationContext _database = new ApplicationContext();
 		private User _client;
 
 		public GeneralInformationPage()
 		{
 			InitializeComponent();
-			var window = Application.Current.Windows[0];
-			if(window is not ClientWindow)
-				window = Application.Current.Windows[2];
-			var s = (ClientWindow)window;
-			_client = s.Client;
-			CreateViews();
+			if (this.Parent is ClientWindow window)
+			{
+				// TODO: бред
+				//var window = Application.Current.Windows[0];
+				//if(window is not ClientWindow)
+				//	window = Application.Current.Windows[2];
+				//var s = (ClientWindow)window;
+				_client = window.Client;
+				CreateViews();
+			}
 		}
 
 		private void CreateViews()
@@ -36,18 +40,19 @@ namespace CourseworkUI.Pages.Client
 
 			if( _client is NaturalPerson )
 			{
-				views = _db.TypesOfInsurances.Where(x => x.Type == "Natural").Include(p => p.IncludedRisks).Take(4).ToList();
+				views = _database.TypesOfInsurances.Where(x => x.Type == "Natural").Include(p => p.IncludedRisks).Take(4).ToList();
 			}
 			else if( _client is LegalPerson )
 			{
-				views = _db.TypesOfInsurances.Where(x => x.Type == "Legal").Include(p => p.IncludedRisks).Take(4).ToList();
+				views = _database.TypesOfInsurances.Where(x => x.Type == "Legal").Include(p => p.IncludedRisks).Take(4).ToList();
 			}
 			 
+			// TODO: убрать коммент
 
-			AddText(FirstText, FirstBox, views[0]);
-			AddText(SecondText, SecondBox, views[1]);
-			AddText(ThirdText, ThirdBox, views[2]);
-			AddText(FourtText, FourthBox, views[3]);
+			//AddText(FirstText, FirstBox, views[0]);
+			//AddText(SecondText, SecondBox, views[1]);
+			//AddText(ThirdText, ThirdBox, views[2]);
+			//AddText(FourtText, FourthBox, views[3]);
 		}
 
 		private void AddText(TextBlock textBlock, TextBox textBox, TypeOfInsurance typeOfInsurance)

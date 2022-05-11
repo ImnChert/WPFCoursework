@@ -7,9 +7,10 @@
         xmlns:vm="clr-namespace:CourseworkUI.ViewModels"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" 
         mc:Ignorable="d"
-        Title="RegisterWindow" Height="550" Width="800"
+        Height="550" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize"
+        
         WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
@@ -22,7 +23,7 @@
     </Window.Resources>
 
     <Window.DataContext>
-        <vm:ClientViewModel/>
+        <vm:ClientViewModel x:Name="clientView"/>
     </Window.DataContext>
 
     <Grid>
@@ -103,11 +104,11 @@
                     Style="{StaticResource BlackAndWhite}" 
                     Grid.Column="1"
                     Command="{Binding OpenMakeAnApplicationPage}"/>
-            <Button Name="Apply" 
-                    Content="Apply for insurance" 
+            <Button Name="Message" 
+                    Content="Messager" 
                     Style="{StaticResource BlackAndWhite}" 
                     Grid.Column="2"
-                    Command="{Binding OpenApplyForInsurancePage}"/>
+                    Command="{Binding OpenMessagePage}"/>
             <Button Name="AccountButton" Style="{StaticResource BlackAndWhite}" Grid.Column="5"/>
             <iconPacks:PackIconMaterial Grid.Column="5" Kind="Account"
                                                Height="50"

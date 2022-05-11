@@ -21,6 +21,7 @@ namespace CourseworkUI.Services
 		public DbSet<InsuranceRisk> InsuranceRisks { get; set; } = null!;
 		public DbSet<ClientApplication> ClientApplications { get; set; } = null!;
 		public DbSet<Message> Messages { get; set; } = null!;
+		public DbSet<Policy> Polices { get; set; } = null!;
 
 		public ApplicationContext()
 		{

@@ -1,5 +1,4 @@
-﻿using CourseworkUI.Interfaces;
-using CourseworkUI.Services;
+﻿using CourseworkUI.Services;
 using System.Windows;
 using System.Windows.Input;
 
@@ -8,13 +7,13 @@ namespace CourseworkUI.Windows
 	/// <summary>
 	/// Interaction logic for RegisterWindow.xaml
 	/// </summary>
-	public partial class RegisterWindow : Window, IApplicationContext
+	public partial class RegisterWindow : Window 
 	{
-		public ApplicationContext DataBase { get; } = null!;
+		private ApplicationContext _database = new ApplicationContext();
 
 		public RegisterWindow(ApplicationContext dataBase)
 		{
-			DataBase = dataBase;
+			_database = dataBase;
 			InitializeComponent();
 		}
 

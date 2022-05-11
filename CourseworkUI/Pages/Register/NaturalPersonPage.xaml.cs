@@ -1,5 +1,4 @@
-﻿using CourseworkUI.Interfaces;
-using CourseworkUI.Models.Clients;
+﻿using CourseworkUI.Models.Clients;
 using CourseworkUI.Services;
 using System.Windows;
 using System.Windows.Controls;
@@ -9,9 +8,9 @@ namespace CourseworkUI.Pages.Register
 	/// <summary>
 	/// Interaction logic for NaturalPersonPage.xaml
 	/// </summary>
-	public partial class NaturalPersonPage : Page, IApplicationContext
+	public partial class NaturalPersonPage : Page 
 	{
-		public ApplicationContext DataBase { get; } = GetApplicationContext.GetAppContext();
+		private ApplicationContext _database { get; } = new ApplicationContext();
 
 		public NaturalPersonPage()
 		{
@@ -87,12 +86,13 @@ namespace CourseworkUI.Pages.Register
 				LocalityText.IsCorrect() &&
 				HouseNumber.IsCorrect() &&
 				ApartmentNumber.IsCorrect())
+				// TODO: поменять правилая
 			{
 				var naturalPesron = new NaturalPerson(txtUser.Text, txtPas.Password, txtFirstName.Text, txtLastName.Text, txtMiddleName.Text, 
 					LocalityText.Text, HouseNumber.Text, ApartmentNumber.Text);
 
-				DataBase.NaturalPersons.Add(naturalPesron);
-				DataBase.SaveChanges();
+				_database.NaturalPersons.Add(naturalPesron);
+				_database.SaveChanges();
 
 				var window = new MainWindow();
 				Application.Current.MainWindow = window;

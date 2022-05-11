@@ -1,5 +1,6 @@
 ﻿using CourseworkUI.Models;
 using CourseworkUI.Models.Clients;
+using CourseworkUI.Models.Employees;
 using CourseworkUI.Models.Users.Clients;
 using CourseworkUI.Services;
 using CourseworkUI.Windows;
@@ -43,7 +44,7 @@ namespace CourseworkUI
 		private void Register_Click(object sender, RoutedEventArgs e)
 		{
 			RegisterWindow window = new RegisterWindow(DataBase);
-			System.Windows.Application.Current.MainWindow = window;
+			Application.Current.MainWindow = window;
 
 			window.Show();
 			this.Close();
@@ -81,6 +82,7 @@ namespace CourseworkUI
 			}
 			else
 			{
+				// TODO: Сделать вывод ошибки
 				// ошибка
 			}
 		}
@@ -95,10 +97,10 @@ namespace CourseworkUI
 		{
 			return new Dictionary<string, Action>()
 			{
-				{ "NaturalPerson", () => { OpenNewWindow(new ClientWindow(DataBase, (Client)_user)); } },
-				{ "LegalPerson", () => { OpenNewWindow(new ClientWindow(DataBase, (Client)_user)); } },
+				{ "NaturalPerson", () => { OpenNewWindow(new ClientWindow( (Client)_user)); } },
+				{ "LegalPerson", () => { OpenNewWindow(new ClientWindow( (Client)_user)); } },
 				//{ "Accountant", () => { OpenNewWindow(new ClientWindow(DataBase)); } },
-				//{ "InsuranceAgent", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
+				{ "InsuranceAgent", () => { OpenNewWindow(new InsuranceAgentWindow((InsuranceAgent)_user)); }},
 				//{ "Manager", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
 				//{ "Admin", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
 			};

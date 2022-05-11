@@ -1,35 +1,23 @@
-﻿using CourseworkUI.Interfaces;
-using CourseworkUI.Models.Users.Clients;
+﻿using CourseworkUI.Models.Users.Clients;
 using CourseworkUI.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CourseworkUI.Windows
 {
 	/// <summary>
 	/// Interaction logic for ClientWindow.xaml
 	/// </summary>
-	public partial class ClientWindow : Window, IApplicationContext
+	public partial class ClientWindow : Window
 	{
-		public ApplicationContext DataBase { get; } = null!;
+		private ApplicationContext _database { get; } = null!;
 		public Client Client { get; } 
 
-		public ClientWindow(ApplicationContext dataBase, Client client)
+		public ClientWindow(Client client)
 		{
-			DataContext = dataBase;
 			Client = client;
 			InitializeComponent();
+		//clientView.CurPage
 		}
 
 		private void Cross_MouseDown(object sender, MouseButtonEventArgs e) => this.Close();
