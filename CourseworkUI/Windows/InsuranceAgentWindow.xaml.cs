@@ -20,16 +20,18 @@ namespace CourseworkUI.Windows
 	/// </summary>
 	public partial class InsuranceAgentWindow : Window
 	{
-		private InsuranceAgent _insuranceAgent;
+		public InsuranceAgent InsuranceAgent;
 
 		public InsuranceAgentWindow(InsuranceAgent insuranceAgent)
 		{
-			_insuranceAgent = insuranceAgent;
+			InsuranceAgent = insuranceAgent;
 			InitializeComponent();
 		}
-
+		// TODO: сделать меню страх агента
 		private void Cross_MouseDown(object sender, MouseButtonEventArgs e) => this.Close();
 
 		private void Stick_MouseDown(object sender, MouseButtonEventArgs e) => this.WindowState = WindowState.Minimized;
+
+		// TODO: сделать страхового агента
 	}
 }

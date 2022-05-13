@@ -10,19 +10,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace CourseworkUI.Pages
+namespace CourseworkUI.Windows
 {
 	/// <summary>
-	/// Interaction logic for AnswerMessagePage.xaml
+	/// Interaction logic for EconomistWindow.xaml
 	/// </summary>
-	public partial class AnswerMessagePage : Page
+	public partial class EconomistWindow : Window
 	{
-		public AnswerMessagePage()
+		public EconomistWindow()
 		{
 			InitializeComponent();
 		}
+
+		// TODO: сделать меню экономиста
 	}
 }

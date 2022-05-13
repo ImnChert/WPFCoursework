@@ -32,6 +32,10 @@
   <ItemGroup>
     <Folder Include="Images\" />
     <Folder Include="Interfaces\" />
+    <Folder Include="Pages\Accountant\" />
+    <Folder Include="Pages\EconomistPages\" />
+    <Folder Include="Pages\ManagerPages\" />
+    <Folder Include="Pages\InsuranceAgentPages\" />
   </ItemGroup>
 
   <ItemGroup>

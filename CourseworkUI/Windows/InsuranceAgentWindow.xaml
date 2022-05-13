@@ -4,11 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseworkUI.Windows"
-          xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" 
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks" xmlns:vm="clr-namespace:CourseworkUI.ViewModels"
         mc:Ignorable="d"
-       Height="550" Width="800"
+        Height="550" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize">
+
+
+
+    <Window.DataContext>
+        <vm:InsuranceAgentViewModel x:Name="ViewModel"/>
+    </Window.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="35"/>
@@ -28,7 +35,7 @@
         <Frame x:Name="Frame" Grid.ColumnSpan="3" Grid.RowSpan="4" NavigationUIVisibility="Hidden"
                Content="{Binding CurPage}"/>
 
-        <Grid x:Name="TopGrid" Grid.Row="0" MouseDown="Top_MouseDown">
+        <Grid x:Name="TopGrid" Grid.Row="0">
             <StackPanel Grid.Row="0">
 
                 <iconPacks:PackIconMaterial Name="cross" Kind="Close" HorizontalAlignment="Right" Margin="0,5,5,0" MouseDown="Cross_MouseDown">

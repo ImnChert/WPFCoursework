@@ -5,14 +5,11 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CourseworkUI.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+     d:DesignHeight="340" d:DesignWidth="800"
       Title="MessagerPage">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="110"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
+         
 
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -32,7 +29,7 @@
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
 
-            <TextBox Text="Your message"
+            <TextBox Text="Your messages"
                      Background="Transparent"
                      Foreground="White"
                      FontSize="24"
@@ -41,7 +38,7 @@
                      Grid.Row="0"
                      Grid.Column="2"
                      Grid.ColumnSpan="1"/>
-            <ListBox Name="ListMEssage" 
+            <ListBox Name="ListMessage" 
                      Grid.Column="1"
                      Grid.Row="1"
                      Grid.ColumnSpan="1"
@@ -52,12 +49,31 @@
                        Grid.RowSpan="3"
                        Background="White"
                       />
+
+            <Button Grid.Row="1"
+                    Grid.Column="4"
+                    Height="40"
+                    Width="160"
+                    Content="Incoming"
+                    FontSize="18"
+                    Name="OutgoingButton"
+                    IsEnabled="False" Click="OutgoingButton_Click"/>
+            
+            <Button Grid.Row="2"
+                    Grid.Column="4"
+                    Height="40"
+                    Width="160"
+                    Content="Incoming"
+                    FontSize="18"
+                    Name="IncomingButton" Click="IncomingButton_Click"/>
+
             <Button Grid.Row="3"
                     Grid.Column="4"
                     Height="60"
                     Width="160"
-                    Content="Answer"
-                    FontSize="20"/>
+                    Content="Create message"
+                    FontSize="20"
+                    Name="CreateMessageButton" Click="CreateMessageButton_Click"/>
         </Grid>
     </Grid>
 </Page>

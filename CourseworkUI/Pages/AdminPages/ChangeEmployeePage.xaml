@@ -1,0 +1,75 @@
+﻿<Page x:Class="CourseworkUI.Pages.AdminPages.ChangeEmployeePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+       mc:Ignorable="d" 
+      d:DesignHeight="455" d:DesignWidth="263.333"
+      Title="ChangePage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="First name:"
+                   Foreground="White"
+                   FontSize="20"
+                   Margin="5,0,0,0"
+                   VerticalAlignment="Bottom"
+                   Grid.Row="1"/>
+
+
+        <TextBox Grid.Row="2"
+                 Foreground="White"
+                 FontSize="18"
+                 Height="25"
+                 Width="250"
+                  Name ="FirstNameTextBox"/>
+        <TextBlock Text="Last name:"
+                   Foreground="White"
+                   FontSize="20"
+                   Margin="5,0,0,0"
+                   Grid.Row="3"
+                    VerticalAlignment="Bottom"/>
+
+        <TextBox Grid.Row="4"
+                 Foreground="White"
+                 FontSize="18"
+                 Height="25"
+                 Width="250"
+                 Name ="LastNameTextBox"/>
+
+        <TextBlock Text="Middle name:"
+                   Foreground="White"
+                   FontSize="20"
+                   Margin="5,0,0,0"
+                   Grid.Row="5"
+                    VerticalAlignment="Bottom"/>
+        <TextBox Grid.Row="6"
+                 Foreground="White"
+                 FontSize="18"
+                 Height="25"
+                 Width="250"
+                 Name ="MiddleNameTextBox"/>
+
+        <Button Content="CHANGE"
+                Grid.Row="10"
+                Width="110"
+                Height="35"
+                HorizontalAlignment="Right"
+                Margin="0,0,3,0" Click="Button_Click"/>
+    </Grid>
+</Page>

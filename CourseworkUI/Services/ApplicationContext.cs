@@ -2,6 +2,7 @@
 using CourseworkUI.Models.Clients;
 using CourseworkUI.Models.Employees;
 using CourseworkUI.Models.Users.Clients;
+using CourseworkUI.Models.Users.Employees;
 using Microsoft.EntityFrameworkCore;
 
 namespace CourseworkUI.Services
@@ -22,6 +23,7 @@ namespace CourseworkUI.Services
 		public DbSet<ClientApplication> ClientApplications { get; set; } = null!;
 		public DbSet<Message> Messages { get; set; } = null!;
 		public DbSet<Policy> Polices { get; set; } = null!;
+		public DbSet<Economist> Economists { get; set; } = null!;
 
 		public ApplicationContext()
 		{

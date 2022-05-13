@@ -48,7 +48,7 @@ namespace CourseworkUI.Pages.Client
 		private void ApplyButton_Click(object sender, RoutedEventArgs e)
 		{
 			var window = (ClientWindow)Application.Current.Windows[0];
-			window.clientView.OpenApplyForInsurancePage.Execute("");
+			window.ViewModel.OpenApplyForInsurancePage.Execute("");
 		}
 	}
 }

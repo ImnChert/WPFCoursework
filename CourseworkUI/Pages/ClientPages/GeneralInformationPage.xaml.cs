@@ -22,16 +22,15 @@ namespace CourseworkUI.Pages.Client
 		public GeneralInformationPage()
 		{
 			InitializeComponent();
-			if (this.Parent is ClientWindow window)
-			{
-				// TODO: бред
-				//var window = Application.Current.Windows[0];
-				//if(window is not ClientWindow)
-				//	window = Application.Current.Windows[2];
-				//var s = (ClientWindow)window;
-				_client = window.Client;
-				CreateViews();
-			}
+
+			// TODO: бред
+			var window = Application.Current.Windows[0];
+			if (window is not ClientWindow)
+				window = Application.Current.Windows[2];
+			var s = (ClientWindow)window;
+			_client = s.Client;
+			CreateViews();
+			InitializeComponent();
 		}
 
 		private void CreateViews()

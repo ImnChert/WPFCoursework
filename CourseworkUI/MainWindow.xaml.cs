@@ -73,7 +73,7 @@ namespace CourseworkUI
 
 		private void Login_Click(object sender, RoutedEventArgs e)
 		{
-			_user = DataBase.Users.FirstOrDefault(p => p.Username == txtUser.Text && p.Password == txrPas.Password);
+			_user = DataBase.Users.FirstOrDefault(p => p.Hide == false && p.Username == txtUser.Text && p.Password == txrPas.Password);
 
 			if (_user != null)
 			{
@@ -102,7 +102,7 @@ namespace CourseworkUI
 				//{ "Accountant", () => { OpenNewWindow(new ClientWindow(DataBase)); } },
 				{ "InsuranceAgent", () => { OpenNewWindow(new InsuranceAgentWindow((InsuranceAgent)_user)); }},
 				//{ "Manager", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
-				//{ "Admin", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
+				{ "Admin", () => { OpenNewWindow(new AdminWindow((Admin)_user)); }},
 			};
 		}
 	}

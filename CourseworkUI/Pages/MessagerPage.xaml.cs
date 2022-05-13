@@ -1,17 +1,11 @@
-﻿using System;
+﻿using CourseworkUI.Models;
+using CourseworkUI.Services;
+using CourseworkUI.Windows;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CourseworkUI.Pages
 {
@@ -20,9 +14,70 @@ namespace CourseworkUI.Pages
 	/// </summary>
 	public partial class MessagerPage : Page
 	{
+		private User _user = null!;
+		private ApplicationContext _db = new ApplicationContext();
+
 		public MessagerPage()
 		{
+			var window = Application.Current.Windows[0];
+
+			if (window is ClientWindow clientWindow)
+				_user = clientWindow.Client;
+			else if (window is InsuranceAgentWindow insuranceAgent)
+				_user = insuranceAgent.InsuranceAgent;
+
+			 
+
 			InitializeComponent();
+			ListMessage.ItemsSource = _db.Messages.Where(m => m.FromId == _user.Id)
+										.OrderByDescending(m => m.DateOfDispatch)
+										.ToList();		
+		}
+
+		private void CreateMessageButton_Click(object sender, RoutedEventArgs e)
+		{
+			var window = Application.Current.Windows[0];
+
+			if (window is ClientWindow clientWindow)
+				clientWindow.ViewModel.OpenCreateMessagePage.Execute("");
+			else if (window is InsuranceAgentWindow insuranceAgent)
+				insuranceAgent.ViewModel.OpenCreateMessagePage.Execute("");
+		}
+		
+
+		private Dictionary<string,Action> GetDictionary()
+		{
+			return new Dictionary<string, Action>
+			{
+				{"Client", ()=>{
+					var window = (ClientWindow)Application.Current.Windows[0];
+					window.ViewModel.OpenCreateMessagePage.Execute("");
+					}
+				},
+				{"InsuranceAgent", ()=>{
+					var window = (InsuranceAgentWindow)Application.Current.Windows[0];
+					window.ViewModel.OpenCreateMessagePage.Execute("");
+					}
+				}
+			};
+		}
+
+		private void OutgoingButton_Click(object sender, RoutedEventArgs e)
+		{
+			ListMessage.ItemsSource = _db.Messages.Where(m => m.FromId == _user.Id)
+									.OrderByDescending(m => m.DateOfDispatch)
+									.ToList();
+			OutgoingButton.IsEnabled = false;
+			IncomingButton.IsEnabled = true;
+		}
+
+		private void IncomingButton_Click(object sender, RoutedEventArgs e)
+		{
+			ListMessage.ItemsSource = _db.Messages.Where(m => m.ToId == _user.Id)
+									.OrderByDescending(m => m.DateOfDispatch)
+									.ToList();
+			IncomingButton.IsEnabled = false;
+			OutgoingButton.IsEnabled = true;
 		}
 	}
 }

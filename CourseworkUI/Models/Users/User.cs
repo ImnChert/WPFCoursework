@@ -8,6 +8,7 @@ namespace CourseworkUI.Models
 		public int Id { get; set; }
 		public string Username { get; set; }
 		public string Password { get; set; }
+		public bool Hide { get; set; } = false;
 
 		public User(string username, string password)
 		{
