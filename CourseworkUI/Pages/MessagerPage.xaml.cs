@@ -19,7 +19,7 @@ namespace CourseworkUI.Pages
 
 		public MessagerPage()
 		{
-			var window = Application.Current.Windows[0];
+			var window = Application.Current.Windows[2];
 
 			if (window is ClientWindow clientWindow)
 				_user = clientWindow.Client;
@@ -29,9 +29,12 @@ namespace CourseworkUI.Pages
 			 
 
 			InitializeComponent();
-			ListMessage.ItemsSource = _db.Messages.Where(m => m.FromId == _user.Id)
+			
+			ListMessage.ItemsSource = _db.Messages.Where(m => m.FromUsername == _user.Username)
 										.OrderByDescending(m => m.DateOfDispatch)
-										.ToList();		
+										.ToList();
+			ListMessage.DisplayMemberPath = "ToUsername";
+
 		}
 
 		private void CreateMessageButton_Click(object sender, RoutedEventArgs e)
@@ -64,20 +67,29 @@ namespace CourseworkUI.Pages
 
 		private void OutgoingButton_Click(object sender, RoutedEventArgs e)
 		{
-			ListMessage.ItemsSource = _db.Messages.Where(m => m.FromId == _user.Id)
+			ListMessage.ItemsSource = _db.Messages.Where(m => m.FromUsername == _user.Username)
 									.OrderByDescending(m => m.DateOfDispatch)
 									.ToList();
 			OutgoingButton.IsEnabled = false;
 			IncomingButton.IsEnabled = true;
+			ListMessage.DisplayMemberPath = "ToUsername";
 		}
 
 		private void IncomingButton_Click(object sender, RoutedEventArgs e)
 		{
-			ListMessage.ItemsSource = _db.Messages.Where(m => m.ToId == _user.Id)
+			ListMessage.ItemsSource = _db.Messages.Where(m => m.ToUsername == _user.Username)
 									.OrderByDescending(m => m.DateOfDispatch)
 									.ToList();
 			IncomingButton.IsEnabled = false;
 			OutgoingButton.IsEnabled = true;
+			ListMessage.DisplayMemberPath = "FromUsername";
+			
+		}
+
+		private void ListMessage_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			var message = (Message)ListMessage.SelectedItem;
+			TextBox.Text = message.Text;
 		}
 	}
 }

@@ -78,7 +78,8 @@ namespace CourseworkUI
 			if (_user != null)
 			{
 				Dictionary<string, Action> dictionary = GetDictionary();
-				dictionary[_user.ToString()]();
+				string? type = _user.ToString();
+				dictionary[type]();
 			}
 			else
 			{
@@ -89,8 +90,9 @@ namespace CourseworkUI
 
 		private void OpenNewWindow(Window window)
 		{
-			window.Show();
+			 
 			this.Close();
+			window.Show();
 		}
 
 		private Dictionary<string, Action> GetDictionary()

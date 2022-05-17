@@ -11,5 +11,8 @@ namespace CourseworkUI.Models.Employees
 			: base(username, password, firstName, lastName, middleName, salary)
 		{
 		}
+
+		public override string? ToString()
+			=> "InsuranceAgent";
 	}
 }

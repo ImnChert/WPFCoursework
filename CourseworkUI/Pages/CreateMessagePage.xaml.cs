@@ -24,7 +24,7 @@ namespace CourseworkUI.Pages
 	/// </summary>
 	public partial class CreateMessagePage : Page
 	{
-		private int _fromId = 0;
+		private string _fromUsername;
 		private ApplicationContext _db = new ApplicationContext();
 
 		public CreateMessagePage()
@@ -32,9 +32,9 @@ namespace CourseworkUI.Pages
 			var window = Application.Current.Windows[0];
 
 			if (window is ClientWindow clientWindow)
-				_fromId = clientWindow.Client.Id;
+				_fromUsername = clientWindow.Client.Username;
 			else if (window is InsuranceAgentWindow insuranceAgent)
-				_fromId = insuranceAgent.InsuranceAgent.Id;
+				_fromUsername = insuranceAgent.InsuranceAgent.Username;
 
 			InitializeComponent();
 		}
@@ -43,7 +43,7 @@ namespace CourseworkUI.Pages
 		{
 			if(TextBox.Text != "")
 			{
-				var message = new Message(_fromId, Convert.ToInt32(ToTextBox.Text), TextBox.Text, DateTime.Now);
+				var message = new Message(_fromUsername, ToTextBox.Text, TextBox.Text, DateTime.Now);
 
 				_db.Messages.Add(message);
 				_db.SaveChanges();

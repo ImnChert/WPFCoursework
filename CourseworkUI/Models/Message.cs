@@ -8,15 +8,15 @@ namespace CourseworkUI.Models
 	[Keyless]
 	public class Message
 	{
-		public int FromId { get; set; }
-		public int ToId { get; set; } 
+		public string FromUsername { get; set; }
+		public string ToUsername { get; set; } 
 		public string Text { get; set; }
 		public DateTime DateOfDispatch { get; set; }
 
-		public Message(int fromId, int toId, string text, DateTime dateOfDispatch)
+		public Message(string fromUsername, string toUsername, string text, DateTime dateOfDispatch)
 		{
-			FromId = fromId;
-			ToId = toId;
+			FromUsername = fromUsername;
+			ToUsername = toUsername;
 			Text = text;
 			DateOfDispatch = dateOfDispatch;
 		}

@@ -11,18 +11,16 @@ namespace CourseworkUI.Models
 		public string Descriprion { get; set; }
 		public decimal InsuranceAmount { get; set; }
 		public decimal CostOfTheInsuranceContract { get; set; }
-		public decimal CoefficientOfIncrease { get; set; }
 		public string Type { get; set; }
 
 		public virtual ICollection<InsuranceRisk> IncludedRisks { get; set; } = new List<InsuranceRisk>();
 
-		public TypeOfInsurance(string name, string descriprion, decimal insuranceAmount, decimal costOfTheInsuranceContract, decimal coefficientOfIncrease, string type)
+		public TypeOfInsurance(string name, string descriprion, decimal insuranceAmount, decimal costOfTheInsuranceContract, string type)
 		{
 			Name = name;
 			Descriprion = descriprion;
 			InsuranceAmount = insuranceAmount;
-			CostOfTheInsuranceContract = costOfTheInsuranceContract;
-			CoefficientOfIncrease = coefficientOfIncrease;	
+			CostOfTheInsuranceContract = costOfTheInsuranceContract;	
 			Type = type;
 		}
 

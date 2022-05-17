@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseworkUI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220511105714_UpdatePolicy")]
-    partial class UpdatePolicy
+    [Migration("20220517122502_CreateDatabase")]
+    partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -77,15 +77,17 @@ namespace CourseworkUI.Migrations
                     b.Property<DateTime>("DateOfDispatch")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FromId")
-                        .HasColumnType("int");
+                    b.Property<string>("FromUsername")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ToId")
-                        .HasColumnType("int");
+                    b.Property<string>("ToUsername")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.ToTable("Messages");
                 });
@@ -138,9 +140,6 @@ namespace CourseworkUI.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<decimal>("CoefficientOfIncrease")
-                        .HasColumnType("decimal(18,2)");
-
                     b.Property<decimal>("CostOfTheInsuranceContract")
                         .HasColumnType("decimal(18,2)");
 
@@ -174,6 +173,9 @@ namespace CourseworkUI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<bool>("Hide")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Password")
                         .IsRequired()
@@ -303,6 +305,13 @@ namespace CourseworkUI.Migrations
                     b.HasBaseType("CourseworkUI.Models.Employees.Employee");
 
                     b.ToTable("Managers");
+                });
+
+            modelBuilder.Entity("CourseworkUI.Models.Users.Employees.Economist", b =>
+                {
+                    b.HasBaseType("CourseworkUI.Models.Employees.Employee");
+
+                    b.ToTable("Economists");
                 });
 
             modelBuilder.Entity("CourseworkUI.Models.ClientApplication", b =>
@@ -442,6 +451,15 @@ namespace CourseworkUI.Migrations
                     b.HasOne("CourseworkUI.Models.Employees.Employee", null)
                         .WithOne()
                         .HasForeignKey("CourseworkUI.Models.Employees.Manager", "Id")
+                        .OnDelete(DeleteBehavior.ClientCascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CourseworkUI.Models.Users.Employees.Economist", b =>
+                {
+                    b.HasOne("CourseworkUI.Models.Employees.Employee", null)
+                        .WithOne()
+                        .HasForeignKey("CourseworkUI.Models.Users.Employees.Economist", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
                 });

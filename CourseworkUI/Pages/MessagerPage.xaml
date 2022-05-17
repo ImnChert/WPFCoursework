@@ -42,8 +42,8 @@
                      Grid.Column="1"
                      Grid.Row="1"
                      Grid.ColumnSpan="1"
-                     Grid.RowSpan="3"/>
-            <TextBlock Grid.Row="1" 
+                     Grid.RowSpan="3" SelectionChanged="ListMessage_SelectionChanged"/>
+            <TextBlock x:Name="TextBox" Grid.Row="1" 
                        Grid.Column="2"
                        Grid.ColumnSpan="2"
                        Grid.RowSpan="3"
@@ -54,7 +54,7 @@
                     Grid.Column="4"
                     Height="40"
                     Width="160"
-                    Content="Incoming"
+                    Content="Outgoing"
                     FontSize="18"
                     Name="OutgoingButton"
                     IsEnabled="False" Click="OutgoingButton_Click"/>

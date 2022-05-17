@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -25,9 +26,10 @@ namespace CourseworkUI.Migrations
                 name: "Messages",
                 columns: table => new
                 {
-                    FromId = table.Column<int>(type: "int", nullable: false),
-                    ToId = table.Column<int>(type: "int", nullable: false),
-                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    FromUsername = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ToUsername = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DateOfDispatch = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -43,7 +45,6 @@ namespace CourseworkUI.Migrations
                     Descriprion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InsuranceAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CostOfTheInsuranceContract = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    CoefficientOfIncrease = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -58,7 +59,8 @@ namespace CourseworkUI.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Username = table.Column<string>(type: "nvarchar(450)", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Hide = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -197,6 +199,22 @@ namespace CourseworkUI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Economists",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Economists", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Economists_Employees_Id",
+                        column: x => x.Id,
+                        principalTable: "Employees",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "InsuranceAgents",
                 columns: table => new
                 {
@@ -261,6 +279,43 @@ namespace CourseworkUI.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Polices",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ClientId = table.Column<int>(type: "int", nullable: false),
+                    InsuranceAgentId = table.Column<int>(type: "int", nullable: false),
+                    TypeOfInsuranceId = table.Column<int>(type: "int", nullable: false),
+                    InsuranceAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CostOfTheInsuranceContract = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    DateOfConclusion = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Polices", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Polices_Client_ClientId",
+                        column: x => x.ClientId,
+                        principalTable: "Client",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Polices_InsuranceAgents_InsuranceAgentId",
+                        column: x => x.InsuranceAgentId,
+                        principalTable: "InsuranceAgents",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Polices_TypesOfInsurances_TypeOfInsuranceId",
+                        column: x => x.TypeOfInsuranceId,
+                        principalTable: "TypesOfInsurances",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_ClientApplications_ClientId",
                 table: "ClientApplications",
@@ -288,6 +343,21 @@ namespace CourseworkUI.Migrations
                 column: "IncludedRisksId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Polices_ClientId",
+                table: "Polices",
+                column: "ClientId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Polices_InsuranceAgentId",
+                table: "Polices",
+                column: "InsuranceAgentId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Polices_TypeOfInsuranceId",
+                table: "Polices",
+                column: "TypeOfInsuranceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_TypesOfInsurances_Name",
                 table: "TypesOfInsurances",
                 column: "Name",
@@ -312,6 +382,9 @@ namespace CourseworkUI.Migrations
                 name: "ClientApplications");
 
             migrationBuilder.DropTable(
+                name: "Economists");
+
+            migrationBuilder.DropTable(
                 name: "InsuranceRiskTypeOfInsurance");
 
             migrationBuilder.DropTable(
@@ -327,16 +400,19 @@ namespace CourseworkUI.Migrations
                 name: "NaturalPersons");
 
             migrationBuilder.DropTable(
-                name: "InsuranceAgents");
+                name: "Polices");
 
             migrationBuilder.DropTable(
                 name: "InsuranceRisks");
 
             migrationBuilder.DropTable(
-                name: "TypesOfInsurances");
+                name: "Client");
 
             migrationBuilder.DropTable(
-                name: "Client");
+                name: "InsuranceAgents");
+
+            migrationBuilder.DropTable(
+                name: "TypesOfInsurances");
 
             migrationBuilder.DropTable(
                 name: "Employees");

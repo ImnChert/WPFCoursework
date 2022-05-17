@@ -10,7 +10,14 @@
         WindowStyle="None"
         ResizeMode="NoResize">
 
+    <Window.Resources>
+        <Style x:Key="BlackAndWhite">
+            <Setter Property="ItemsControl.BorderBrush" Value="Transparent"/>
+            <Setter Property="Control.Background" Value="Transparent" />
+            <Setter Property="Control.Foreground" Value="White" />
 
+        </Style>
+    </Window.Resources>
 
     <Window.DataContext>
         <vm:InsuranceAgentViewModel x:Name="ViewModel"/>
@@ -32,7 +39,8 @@
             </Border.Background>
         </Border>
 
-        <Frame x:Name="Frame" Grid.ColumnSpan="3" Grid.RowSpan="4" NavigationUIVisibility="Hidden"
+        <Frame x:Name="Frame" Grid.Row="2" Grid.RowSpan="4"
+               NavigationUIVisibility="Hidden"
                Content="{Binding CurPage}"/>
 
         <Grid x:Name="TopGrid" Grid.Row="0">
@@ -72,6 +80,57 @@
                     </iconPacks:PackIconMaterial.Effect>
                 </iconPacks:PackIconMaterial>
             </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="ViewingApplicationsn" 
+                    Content="Viewing applications" 
+                    Style="{StaticResource BlackAndWhite}" 
+                    Grid.Column="0"
+                    Command="{Binding OpenViewingApplicationsnPage}"/>
+            <Button Name="AddNewPolicy" 
+                    Content="Add a new policy" 
+                    Style="{StaticResource BlackAndWhite}" 
+                    Grid.Column="1"
+                    Command="{Binding OpenAddNewPolicyPage}"/>
+            <Button Name="Message" 
+                    Content="Messager" 
+                    Style="{StaticResource BlackAndWhite}" 
+                    Grid.Column="2"
+                    Command="{Binding OpenMessagePage}"/>
+            <Button Name="AccountButton" Style="{StaticResource BlackAndWhite}" Grid.Column="5"/>
+            <iconPacks:PackIconMaterial Grid.Column="5" Kind="Account"
+                                               Height="50"
+                                               Width="50"
+                                               VerticalAlignment="Center"
+                                               HorizontalAlignment="Center">
+                <iconPacks:PackIconMaterial.Style>
+                    <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type iconPacks:PackIconMaterial}">
+                                    <Border Background="{TemplateBinding Background}" 
+                                            CornerRadius="20"
+                                                                    BorderThickness="2" 
+                                                                    BorderBrush="White">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+
+                        </Setter>
+                    </Style>
+                </iconPacks:PackIconMaterial.Style>
+            </iconPacks:PackIconMaterial>
         </Grid>
     </Grid>
 </Window>

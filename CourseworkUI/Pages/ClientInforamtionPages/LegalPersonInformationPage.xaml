@@ -1,0 +1,78 @@
+﻿<Page x:Class="CourseworkUI.Pages.ClientInforamtionPages.LegalPersonInformationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseworkUI.Pages.ClientInforamtionPages"
+      mc:Ignorable="d" 
+      Height="400" Width="600"
+      Title="LegalPersonInformationPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="240"/>
+            <ColumnDefinition/>
+
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Text="Name of organiztion:"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   FontSize="22"
+                   Grid.Row="2"
+                   Grid.Column="0"/>
+
+        <TextBlock Name="NameOfOrganizationText"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   FontSize="22"
+                   Grid.Row="2"
+                   Grid.Column="1"/>
+
+    
+
+        <TextBlock Text="Locality:"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   FontSize="22"
+                   Grid.Row="3"
+                   Grid.Column="0"/>
+
+        <TextBlock Name="LocalityText"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   FontSize="22"
+                   Grid.Row="3"
+                   Grid.Column="1"/>
+
+        <TextBlock Text="House number:"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   FontSize="22"
+                   Grid.Row="4"
+                   Grid.Column="0"/>
+
+        <TextBlock Name="HouseNumberText"
+                   HorizontalAlignment="Right"
+                   VerticalAlignment="Center"
+                   Foreground="White"
+                   FontSize="22"
+                   Grid.Row="4"
+                   Grid.Column="1"/>
+    </Grid>
+</Page>

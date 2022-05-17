@@ -16,7 +16,7 @@ namespace CourseworkUI.Models
 			Password = password;
 		}
 
-		public override string? ToString() => "User";
+		//public override string? ToString() => "User";
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 		public void OnPropertyChanged([CallerMemberName] string prop = "")

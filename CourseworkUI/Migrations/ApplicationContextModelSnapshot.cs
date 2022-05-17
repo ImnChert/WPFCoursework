@@ -75,15 +75,17 @@ namespace CourseworkUI.Migrations
                     b.Property<DateTime>("DateOfDispatch")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FromId")
-                        .HasColumnType("int");
+                    b.Property<string>("FromUsername")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ToId")
-                        .HasColumnType("int");
+                    b.Property<string>("ToUsername")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.ToTable("Messages");
                 });
@@ -135,9 +137,6 @@ namespace CourseworkUI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<decimal>("CoefficientOfIncrease")
-                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("CostOfTheInsuranceContract")
                         .HasColumnType("decimal(18,2)");
