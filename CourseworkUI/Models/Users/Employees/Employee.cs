@@ -1,9 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using CourseworkUI.Interfaces;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourseworkUI.Models.Employees
 {
 	[Table("Employees")]
-	public class Employee : User
+	public class Employee : User, IFullName
 	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }

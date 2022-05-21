@@ -5,10 +5,61 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CourseworkUI.Pages.InsuranceAgentPages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="340" d:DesignWidth="800"
       Title="AddNewPolicyPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Number application:"
+                       Foreground="White"
+                       FontSize="24"
+                       Grid.Row="0"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
+            <TextBox Name="NumberApplicationTextBox"
+                     Grid.Row="1"/>
+
+            <TextBlock Text="Insurance amount:"
+                       Foreground="White"
+                       FontSize="24"
+                       Grid.Row="2"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
+            <TextBox Name="InsuranceAmountTextBox"
+                     Grid.Row="3"/>
+
+            <TextBlock Text="Cost:"
+                       Foreground="White"
+                       FontSize="24"
+                       Grid.Row="4"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"/>
+            <TextBox Name="CostTextBox"
+                     Grid.Row="5"/>
+
+            <Button Content="Add"
+                    Grid.Row="7"
+                    Width="150"
+                    FontSize="24" Click="Button_Click"/>
+        </Grid>
     </Grid>
 </Page>

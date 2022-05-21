@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -13,7 +14,7 @@ namespace CourseworkUI.Models
 		public decimal CostOfTheInsuranceContract { get; set; }
 		public string Type { get; set; }
 		public bool Hide { get; set; } = false;
- 
+
 		public virtual ICollection<InsuranceRisk> IncludedRisks { get; set; } = new List<InsuranceRisk>();
 
 		public TypeOfInsurance(string name, string descriprion, decimal insuranceAmount, decimal costOfTheInsuranceContract, string type)
@@ -21,12 +22,25 @@ namespace CourseworkUI.Models
 			Name = name;
 			Descriprion = descriprion;
 			InsuranceAmount = insuranceAmount;
-			CostOfTheInsuranceContract = costOfTheInsuranceContract;	
+			CostOfTheInsuranceContract = costOfTheInsuranceContract;
 			Type = type;
 		}
+
+
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 		public void OnPropertyChanged([CallerMemberName] string prop = "")
 			=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+
+		public override bool Equals(object? obj)
+		{
+			return obj is TypeOfInsurance insurance &&
+				   Name == insurance.Name;
+		}
+
+		public override int GetHashCode()
+		{
+			return HashCode.Combine(Name);
+		}
 	}
 }

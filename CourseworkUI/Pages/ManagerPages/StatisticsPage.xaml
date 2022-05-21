@@ -1,0 +1,44 @@
+﻿<Page x:Class="CourseworkUI.Pages.ManagerPages.StatisticsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseworkUI.Pages.ManagerPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="340" d:DesignWidth="800"
+      Title="StatisticsPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button Content="Customer Information"
+                    Height="80"
+                    FontSize="20"
+                    Name="CustomerInformationButten"
+                    Grid.Row="0" Click="CustomerInformationButten_Click"/>
+
+            <Button Content="Popularity of insurance types"
+                    Height="80"
+                    FontSize="20"
+                    Grid.Row="1"
+                     Name="PopularityInformationButten" Click="PopularityInformationButten_Click"/>
+
+            <Button Content="Productivity of insurance agents"
+                    Height="80"
+                    FontSize="20"
+                    Grid.Row="2"
+                    Name="ProductivityInformationButten" Click="ProductivityInformationButten_Click"/>
+        </Grid>
+    </Grid>
+</Page>

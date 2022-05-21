@@ -8,7 +8,7 @@ namespace CourseworkUI.Pages.Register
 	/// <summary>
 	/// Interaction logic for NaturalPersonPage.xaml
 	/// </summary>
-	public partial class NaturalPersonPage : Page 
+	public partial class NaturalPersonPage : Page
 	{
 		private ApplicationContext _database { get; } = new ApplicationContext();
 
@@ -67,41 +67,6 @@ namespace CourseworkUI.Pages.Register
 			txtMiddleName.ShadowText().CheckGotFocus("Middle name");
 		}
 
-		private void RegisterButton_Click(object sender, RoutedEventArgs e)
-		{
-			txtFirstName.Rules().MinCharacters(5).Validate();
-			txtLastName.Rules().MinCharacters(5).Validate();
-			txtMiddleName.Rules().MinCharacters(5).Validate();
-			txtUser.Rules().MinCharacters(5).Validate();
-			txtPas.Rules().MinCharacters(5).Validate();
-			LocalityText.Rules().MinCharacters(5).Validate();
-			HouseNumber.Rules().MinCharacters(5).Validate();
-			ApartmentNumber.Rules().MinCharacters(5).Validate();
-
-			if (txtFirstName.IsCorrect() &&
-				txtLastName.IsCorrect() &&
-				txtMiddleName.IsCorrect() &&
-				txtUser.IsCorrect() &&
-				txtPas.IsCorrect() &&
-				LocalityText.IsCorrect() &&
-				HouseNumber.IsCorrect() &&
-				ApartmentNumber.IsCorrect())
-				// TODO: поменять правилая
-			{
-				var naturalPesron = new NaturalPerson(txtUser.Text, txtPas.Password, txtFirstName.Text, txtLastName.Text, txtMiddleName.Text, 
-					LocalityText.Text, HouseNumber.Text, ApartmentNumber.Text);
-
-				_database.NaturalPersons.Add(naturalPesron);
-				_database.SaveChanges();
-
-				var window = new MainWindow();
-				Application.Current.MainWindow = window;
-
-				window.Show();
-				Application.Current.Windows[0].Close();
-			}
-		}
-
 		private void HouseNumber_GotFocus(object sender, RoutedEventArgs e)
 		{
 			HouseNumber.ShadowText().CheckGotFocus("House number");
@@ -130,6 +95,71 @@ namespace CourseworkUI.Pages.Register
 		private void ApartmentNumber_LostFocus(object sender, RoutedEventArgs e)
 		{
 			ApartmentNumber.ShadowText().CheckLostFocus("Apartment number");
+		}
+
+		private void RegisterButton_Click(object sender, RoutedEventArgs e)
+		{
+			txtFirstName.Rules().MinCharacters(3)
+								.OnlyText()
+								.ValidateControl();
+
+			txtLastName.Rules().MinCharacters(3)
+								.OnlyText()
+								.ValidateControl();
+
+			txtMiddleName.Rules().MinCharacters(3)
+								.OnlyText()
+								.ValidateControl();
+
+			txtUser.Rules().MinCharacters(3)
+							.CorrectUsername()
+							.ValidateControl();
+
+			txtPas.Rules().MinCharacters(5)
+							.ValidateControl();
+
+			LocalityText.Rules().MinCharacters(2)
+								.MaxCharacters(12)
+								.OnlyText()
+								.ValidateControl();
+
+			HouseNumber.Rules().MinCharacters(1)
+								.MaxCharacters(4)
+								.ValidateControl();
+
+			ApartmentNumber.Rules().MinCharacters(1)
+									.MaxCharacters(4)
+									.ValidateControl();
+
+			if (txtFirstName.IsCorrect() &&
+				txtLastName.IsCorrect() &&
+				txtMiddleName.IsCorrect() &&
+				txtUser.IsCorrect() &&
+				txtPas.IsCorrect() &&
+				LocalityText.IsCorrect() &&
+				HouseNumber.IsCorrect() &&
+				ApartmentNumber.IsCorrect())
+			{
+				var naturalPesron = new NaturalPerson(
+					txtUser.Text,
+					txtPas.Password,
+					txtFirstName.Text,
+					txtLastName.Text,
+					txtMiddleName.Text,
+					LocalityText.Text,
+					HouseNumber.Text,
+					ApartmentNumber.Text
+					);
+
+				_database.NaturalPersons.Add(naturalPesron);
+				_database.SaveChanges();
+
+				var window = new MainWindow();
+				Application.Current.MainWindow = window;
+
+				window.Show();
+				Application.Current.Windows[0].Close();
+			}
 		}
 	}
 }

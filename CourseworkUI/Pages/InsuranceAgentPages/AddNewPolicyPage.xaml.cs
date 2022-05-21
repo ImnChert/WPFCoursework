@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using CourseworkUI.Models;
+using CourseworkUI.Services;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CourseworkUI.Pages.InsuranceAgentPages
 {
@@ -20,9 +12,29 @@ namespace CourseworkUI.Pages.InsuranceAgentPages
 	/// </summary>
 	public partial class AddNewPolicyPage : Page
 	{
+		private ApplicationContext _db = new ApplicationContext();
+
 		public AddNewPolicyPage()
 		{
 			InitializeComponent();
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			// TODO: проверки
+
+			var application = _db.ClientApplications.First(a => a.Id == Convert.ToInt32(NumberApplicationTextBox.Text));
+
+			if (application != null)
+			{
+				var policy = new Policy(Convert.ToInt32(InsuranceAmountTextBox.Text), Convert.ToInt32(CostTextBox.Text), DateTime.Now);
+				policy.TypeOfInsurance = application.TypeOfInsurance;
+				policy.InsuranceAgent = application.InsuranceAgent;
+				policy.Client = application.Client;
+
+				_db.Polices.Add(policy);
+				_db.SaveChanges();
+			}
 		}
 	}
 }

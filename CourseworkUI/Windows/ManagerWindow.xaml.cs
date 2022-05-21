@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CourseworkUI.Models.Employees;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CourseworkUI.Windows
 {
@@ -19,10 +9,15 @@ namespace CourseworkUI.Windows
 	/// </summary>
 	public partial class ManagerWindow : Window
 	{
-		public ManagerWindow()
+		public Manager Manager;
+		public ManagerWindow(Manager manager)
 		{
 			InitializeComponent();
+			Manager = manager;
 		}
-		// TODO: сделать меню менеджреа
+
+		private void Cross_MouseDown(object sender, MouseButtonEventArgs e) => this.Close();
+
+		private void Stick_MouseDown(object sender, MouseButtonEventArgs e) => this.WindowState = WindowState.Minimized;
 	}
 }

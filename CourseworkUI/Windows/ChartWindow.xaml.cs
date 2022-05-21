@@ -46,6 +46,28 @@ namespace CourseworkUI.Windows
 
 				chart.ChartAreas[0].Area3DStyle.Enable3D = true;
 			}
+			else if (_type == "lines")
+			{
+				var name = new List<string>();
+				var salary = new List<double>();
+				var profit = new List<double>();
+
+				foreach ((object, object) item in _list)
+				{
+					var agent = ((string, double))item.Item1;
+					chart.Series.Add(agent.Item1);
+
+					chart.Series[agent.Item1].Color = Color.FromArgb(
+																		255 - (int)agent.Item2 % 255,
+																		(int)item.Item2 % 255,
+																		255 - ((int)agent.Item2 + (int)item.Item2) % 255
+																	);
+					chart.Series[agent.Item1].ChartType = SeriesChartType.Line;
+					chart.Series[agent.Item1].LegendText = agent.Item1;
+					chart.Series[agent.Item1].Points.AddXY(0, 0);
+					chart.Series[agent.Item1].Points.AddXY(agent.Item2, (double)item.Item2);
+				}
+			}
 		}
 	}
 }

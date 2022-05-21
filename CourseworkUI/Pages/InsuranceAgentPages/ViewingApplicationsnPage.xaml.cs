@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Linq;
 using CourseworkUI.Windows;
+using CourseworkUI.Models.Employees;
 
 namespace CourseworkUI.Pages.InsuranceAgentPages
 {
@@ -27,9 +28,18 @@ namespace CourseworkUI.Pages.InsuranceAgentPages
 		private ClientApplication _application { get; set; } = null!;
 
 		private ApplicationContext _db = new ApplicationContext();
+		private InsuranceAgent _insuranceAgent;
+
 		public ViewingApplicationsnPage()
 		{
 			InitializeComponent();
+
+			var window = Application.Current.Windows[0];
+			if (window is not InsuranceAgentWindow)
+				window = Application.Current.Windows[2];
+			var s = (InsuranceAgentWindow)window;
+			_insuranceAgent = s.InsuranceAgent;
+
 
 			ApplicationListBox.ItemsSource = FindPendingContracts();
 		}
@@ -66,6 +76,20 @@ namespace CourseworkUI.Pages.InsuranceAgentPages
 
 		private void ApproveButton_Click(object sender, RoutedEventArgs e)
 		{
+			if (_application != null)
+			{
+				_application.InsuranceAgent = _insuranceAgent;
+
+
+				var window = Application.Current.Windows[0];
+				if (window is not InsuranceAgentWindow)
+					window = Application.Current.Windows[2];
+				var s = (InsuranceAgentWindow)window;
+
+				s.ViewModel.OpenCreateMessagePage.Execute("");
+				var i = (CreateMessagePage)s.ViewModel.CurPage;
+				i.ToTextBox.Text = _application.Client.Username;
+			}
 			// TODO: открытие мессаджера и поставить агента
 		}
 	}

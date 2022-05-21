@@ -52,7 +52,16 @@ namespace CourseworkUI.Pages.InsuranceAgentPages
 				_db.Polices.Update(_policy);
 				_db.SaveChanges();
 
-				// TODO: открытие мессаджера
+				var window = Application.Current.Windows[0];
+				if (window is not InsuranceAgentWindow)
+					window = Application.Current.Windows[2];
+				var s = (InsuranceAgentWindow)window;
+
+				s.ViewModel.OpenCreateMessagePage.Execute("");
+				var i = (CreateMessagePage)s.ViewModel.CurPage;
+				i.ToTextBox.Text = _policy.Client.Username;
+
+				// TODO: рефакторинг
 			}
 		}
 	}

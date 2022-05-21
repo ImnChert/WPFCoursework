@@ -69,11 +69,25 @@ namespace CourseworkUI.Pages.Register
 
 		private void RegisterButton_Click(object sender, RoutedEventArgs e)
 		{
-			TxtNameOfOrganization.Rules().MinCharacters(5).Validate();
-			txtUser.Rules().MinCharacters(5).Validate();
-			txtPas.Rules().MinCharacters(5).Validate();
-			LocalityText.Rules().MinCharacters(5).Validate();
-			HouseNumber.Rules().MinCharacters(5).Validate();
+			TxtNameOfOrganization.Rules().MinCharacters(3)
+										.OnlyText()
+										.ValidateControl();
+
+			txtUser.Rules().MinCharacters(3)
+							.CorrectUsername()
+							.ValidateControl();
+
+			txtPas.Rules().MinCharacters(5)
+							.ValidateControl();
+
+			LocalityText.Rules().MinCharacters(2)
+								.MaxCharacters(12)
+								.OnlyText()
+								.ValidateControl();
+
+			HouseNumber.Rules().MinCharacters(1)
+								.MaxCharacters(4)
+								.ValidateControl();
 
 			if (TxtNameOfOrganization.IsCorrect() &&
 				txtUser.IsCorrect() &&
@@ -81,7 +95,13 @@ namespace CourseworkUI.Pages.Register
 				HouseNumber.IsCorrect() &&
 				LocalityText.IsCorrect())
 			{
-				var legalPerson = new LegalPerson(txtUser.Text, txtPas.Password, TxtNameOfOrganization.Text, LocalityText.Text, HouseNumber.Text);
+				var legalPerson = new LegalPerson(
+					txtUser.Text,
+					txtPas.Password,
+					TxtNameOfOrganization.Text,
+					LocalityText.Text,
+					HouseNumber.Text
+					);
 
 				_database.LegalPersons.Add(legalPerson);
 				_database.SaveChanges();

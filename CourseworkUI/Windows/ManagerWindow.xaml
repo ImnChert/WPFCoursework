@@ -9,7 +9,109 @@
         Height="550" Width="800"
         WindowStyle="None"
         ResizeMode="NoResize">
+
+    <Window.Resources>
+        <Style x:Key="BlackAndWhite">
+            <Setter Property="ItemsControl.BorderBrush" Value="Transparent"/>
+            <Setter Property="Control.Background" Value="Transparent" />
+            <Setter Property="Control.Foreground" Value="White" />
+
+        </Style>
+    </Window.Resources>
+
+    <Window.DataContext>
+        <vm:ManagerViewModel x:Name="ViewModel"/>
+    </Window.DataContext>
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Border CornerRadius="10" Grid.RowSpan="3" Grid.ColumnSpan="2">
+            <Border.Background>
+                <LinearGradientBrush>
+                    <GradientStop Color="#0E294B" Offset="0.0"/>
+                    <GradientStop Color="#00BFFF" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+        </Border>
+
+        <Frame x:Name="Frame" Grid.Row="2" Grid.RowSpan="4"
+               NavigationUIVisibility="Hidden"
+               Content="{Binding CurPage}"/>
+
+        <Grid x:Name="TopGrid" Grid.Row="0">
+            <StackPanel Grid.Row="0">
+
+                <iconPacks:PackIconMaterial Name="cross" Kind="Close" HorizontalAlignment="Right" Margin="0,5,5,0" MouseDown="Cross_MouseDown">
+                    <iconPacks:PackIconMaterial.Style>
+                        <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=cross}" 
+                                             Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </iconPacks:PackIconMaterial.Style>
+
+                    <iconPacks:PackIconMaterial.Effect>
+                        <BlurEffect Radius="2"/>
+                    </iconPacks:PackIconMaterial.Effect>
+                </iconPacks:PackIconMaterial>
+
+                <iconPacks:PackIconMaterial Name="stick"  Kind="WindowMinimize" HorizontalAlignment="Right" Margin="0,-11,35,0" MouseDown="Stick_MouseDown">
+                    <iconPacks:PackIconMaterial.Style>
+                        <Style TargetType="{x:Type iconPacks:PackIconMaterial}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=stick}" 
+                                             Value="True">
+                                    <Setter Property="Foreground" Value="White"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </iconPacks:PackIconMaterial.Style>
+
+                    <iconPacks:PackIconMaterial.Effect>
+                        <BlurEffect Radius="2"/>
+                    </iconPacks:PackIconMaterial.Effect>
+                </iconPacks:PackIconMaterial>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Name="ViewingApplicationsn" 
+                    Content="Viewing applications" 
+                    Style="{StaticResource BlackAndWhite}" 
+                    Grid.Column="0"
+                    Command="{Binding OpenStatisticsPage}"/>
+            <Button Name="AddNewPolicy" 
+                    Content="Add a new policy" 
+                    Style="{StaticResource BlackAndWhite}" 
+                    Grid.Column="1"
+                    Command="{Binding OpenReportsPage}"/>
+
+            <Button Name="AccountButton" Style="{StaticResource BlackAndWhite}" 
+                    Grid.Column="5">
+                <iconPacks:PackIconMaterial Kind="Account"
+                                            Height="40"
+                                            Width="40"
+                                            VerticalAlignment="Center"
+                                            HorizontalAlignment="Center"/>
+            </Button>
+        </Grid>
+
     </Grid>
 </Window>

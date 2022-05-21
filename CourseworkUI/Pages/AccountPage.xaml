@@ -5,10 +5,135 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:CourseworkUI.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="340" d:DesignWidth="800"
       Title="AccountPage">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="110"/>
+        </Grid.RowDefinitions>
+
+        <Grid x:Name="NaturalPersonGrid"
+              Grid.Column="0"
+              Visibility="Visible">
+
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="First name:"
+                       FontSize="20"
+                       Foreground="White"
+                       Grid.Row="0"/>
+            <TextBox x:Name="FirstNameTextBox"
+                     FontSize="20"
+                     Foreground="White"
+                     Background="Transparent"
+                     Grid.Row="1"
+                     IsReadOnly="True"/>
+
+            <TextBlock Text="Middle name:"
+                       FontSize="20"
+                       Foreground="White"
+                       Grid.Row="2"/>
+            <TextBox x:Name="MiddleNameTextBox"
+                     FontSize="20"
+                     Foreground="White"
+                     Background="Transparent"
+                     Grid.Row="3"
+                     IsReadOnly="True"/>
+
+            <TextBlock Text="Last name:"
+                       FontSize="20"
+                       Foreground="White"
+                       Grid.Row="4"/>
+            <TextBox x:Name="LastNameTextBox"
+                     FontSize="20"
+                     Foreground="White"
+                     Background="Transparent"
+                     Grid.Row="5"
+                     IsReadOnly="True"/>
+
+        </Grid>
+
+        <Grid x:Name="LegalPersonGrid"
+              Grid.Column="0"
+              Visibility="Hidden">
+
+            <TextBlock Text="Name organization:"
+                       FontSize="20"
+                       Foreground="White"
+                       Grid.Row="4"/>
+            <TextBox x:Name="NameOrganizationTextBox"
+                     FontSize="20"
+                     Foreground="White"
+                     Background="Transparent"
+                     Grid.Row="5"
+                     IsReadOnly="True"
+                     />
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button Content="Change"
+                    Grid.Row="3"
+                    Width="250"
+                    FontSize="20"
+                    Name="ChangeButton" Click="ChangeButton_Click"/>
+
+            <Button Content="Save"
+                    Grid.Row="3"
+                    Width="250"
+                    FontSize="20"
+                    Name="SaveButton" 
+                    Visibility="Hidden" Click="SaveButton_Click"/>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Text="Username:"
+                       FontSize="20"
+                       Foreground="White"
+                       Grid.Row="0"/>
+            <TextBox x:Name="UsernameTextBox"
+                     FontSize="20"
+                     Foreground="White"
+                     Background="Transparent"
+                     Grid.Row="1"/>
+
+            <TextBlock Text="Password:"
+                       FontSize="20"
+                       Foreground="White"
+                       Grid.Row="2"/>
+            <TextBox x:Name="PasswordTextBox"
+                     FontSize="20"
+                     Foreground="White"
+                     Background="Transparent"
+                     Grid.Row="3"/>
+        </Grid>
     </Grid>
 </Page>

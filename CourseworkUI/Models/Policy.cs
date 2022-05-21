@@ -30,6 +30,8 @@ namespace CourseworkUI.Models
 			CheckPayment();
 		}
 
+		// TODO: сделать уведомление завершения действия полиса
+
 		private void CheckPayment()
 		{
 			if (DateTime.Now >= ExpirationDate)

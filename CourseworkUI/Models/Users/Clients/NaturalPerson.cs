@@ -1,10 +1,11 @@
-﻿using CourseworkUI.Models.Users.Clients;
+﻿using CourseworkUI.Interfaces;
+using CourseworkUI.Models.Users.Clients;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CourseworkUI.Models.Clients
 {
 	[Table("NaturalPersons")]
-	public class NaturalPerson : Client
+	public class NaturalPerson : Client, IFullName
 	{
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
@@ -12,7 +13,7 @@ namespace CourseworkUI.Models.Clients
 		public string ApartmentNumber { get; set; }
 
 		public NaturalPerson(string username, string password, string firstName, string lastName, string middleName, string locality, string houseNumber, string apartmentNumber)
-			: base(username, password, locality,houseNumber)
+			: base(username, password, locality, houseNumber)
 
 		{
 			FirstName = firstName;

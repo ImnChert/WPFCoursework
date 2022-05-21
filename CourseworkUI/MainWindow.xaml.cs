@@ -1,5 +1,4 @@
 ﻿using CourseworkUI.Models;
-using CourseworkUI.Models.Clients;
 using CourseworkUI.Models.Employees;
 using CourseworkUI.Models.Users.Clients;
 using CourseworkUI.Models.Users.Employees;
@@ -84,14 +83,14 @@ namespace CourseworkUI
 			}
 			else
 			{
-				// TODO: Сделать вывод ошибки
-				// ошибка
+				txrPas.Rules().ValidateControlError();
+				txtUser.Rules().ValidateControlError();
 			}
 		}
 
 		private void OpenNewWindow(Window window)
 		{
-			 
+
 			this.Close();
 			window.Show();
 		}
@@ -104,7 +103,7 @@ namespace CourseworkUI
 				{ "LegalPerson", () => { OpenNewWindow(new ClientWindow( (Client)_user)); } },
 				{ "Accountant", () => { OpenNewWindow(new AccountantWindow((Accountant)_user)); } },
 				{ "InsuranceAgent", () => { OpenNewWindow(new InsuranceAgentWindow((InsuranceAgent)_user)); }},
-				//{ "Manager", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
+				{ "Manager", () => { OpenNewWindow(new ManagerWindow((Manager)_user)); }},
 				{ "Admin", () => { OpenNewWindow(new AdminWindow((Admin)_user)); }},
 				{ "Economist", () => { OpenNewWindow(new EconomistWindow((Economist)_user)); }},
 			};
