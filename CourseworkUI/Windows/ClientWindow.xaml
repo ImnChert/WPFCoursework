@@ -104,10 +104,15 @@
                     Style="{StaticResource BlackAndWhite}" 
                     Grid.Column="1"
                     Command="{Binding OpenMakeAnApplicationPage}"/>
+            <Button Name="Policy" 
+                    Content="Polices" 
+                    Style="{StaticResource BlackAndWhite}" 
+                    Grid.Column="2"
+                    Command="{Binding OpenIssuedPoliciesPage}"/>
             <Button Name="Message" 
                     Content="Messager" 
                     Style="{StaticResource BlackAndWhite}" 
-                    Grid.Column="2"
+                    Grid.Column="3"
                     Command="{Binding OpenMessagePage}"/>
             <Button Name="AccountButton" Style="{StaticResource BlackAndWhite}" Grid.Column="5"/>
             <iconPacks:PackIconMaterial Grid.Column="5" Kind="Account"

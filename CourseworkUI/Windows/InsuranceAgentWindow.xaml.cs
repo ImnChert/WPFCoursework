@@ -27,11 +27,9 @@ namespace CourseworkUI.Windows
 			InsuranceAgent = insuranceAgent;
 			InitializeComponent();
 		}
-		// TODO: сделать меню страх агента
+		 
 		private void Cross_MouseDown(object sender, MouseButtonEventArgs e) => this.Close();
 
 		private void Stick_MouseDown(object sender, MouseButtonEventArgs e) => this.WindowState = WindowState.Minimized;
-
-		// TODO: сделать страхового агента
 	}
 }

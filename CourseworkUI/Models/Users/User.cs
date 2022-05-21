@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace CourseworkUI.Models
@@ -16,10 +17,23 @@ namespace CourseworkUI.Models
 			Password = password;
 		}
 
-		//public override string? ToString() => "User";
+		
 
 		public event PropertyChangedEventHandler? PropertyChanged;
 		public void OnPropertyChanged([CallerMemberName] string prop = "")
 			=> PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+
+		public override bool Equals(object? obj)
+		{
+			return obj is User user &&
+				   Username == user.Username &&
+				   Password == user.Password &&
+				   Hide == user.Hide;
+		}
+
+		public override int GetHashCode()
+		{
+			return HashCode.Combine(Username, Password, Hide);
+		}
 	}
 }

@@ -45,7 +45,8 @@ namespace CourseworkUI.Migrations
                     Descriprion = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InsuranceAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CostOfTheInsuranceContract = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Hide = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -291,7 +292,9 @@ namespace CourseworkUI.Migrations
                     InsuranceAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     CostOfTheInsuranceContract = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     DateOfConclusion = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ExpirationDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Payment = table.Column<int>(type: "int", nullable: false),
+                    AmountPaid = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -312,6 +315,27 @@ namespace CourseworkUI.Migrations
                         name: "FK_Polices_TypesOfInsurances_TypeOfInsuranceId",
                         column: x => x.TypeOfInsuranceId,
                         principalTable: "TypesOfInsurances",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MonthlyPayments",
+                columns: table => new
+                {
+                    MonthlyPaymentId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PayoutAmount = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Month = table.Column<int>(type: "int", nullable: false),
+                    PolicyId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MonthlyPayments", x => x.MonthlyPaymentId);
+                    table.ForeignKey(
+                        name: "FK_MonthlyPayments_Polices_PolicyId",
+                        column: x => x.PolicyId,
+                        principalTable: "Polices",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -341,6 +365,11 @@ namespace CourseworkUI.Migrations
                 name: "IX_InsuranceRiskTypeOfInsurance_IncludedRisksId",
                 table: "InsuranceRiskTypeOfInsurance",
                 column: "IncludedRisksId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MonthlyPayments_PolicyId",
+                table: "MonthlyPayments",
+                column: "PolicyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Polices_ClientId",
@@ -397,13 +426,16 @@ namespace CourseworkUI.Migrations
                 name: "Messages");
 
             migrationBuilder.DropTable(
+                name: "MonthlyPayments");
+
+            migrationBuilder.DropTable(
                 name: "NaturalPersons");
 
             migrationBuilder.DropTable(
-                name: "Polices");
+                name: "InsuranceRisks");
 
             migrationBuilder.DropTable(
-                name: "InsuranceRisks");
+                name: "Polices");
 
             migrationBuilder.DropTable(
                 name: "Client");

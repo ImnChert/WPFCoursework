@@ -10,5 +10,7 @@ namespace CourseworkUI.Models.Employees
 		{
 			
 		}
+
+		public override string? ToString() => "Accountant";
 	}
 }

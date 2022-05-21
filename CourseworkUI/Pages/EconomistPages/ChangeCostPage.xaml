@@ -1,11 +1,10 @@
-﻿<Page x:Class="CourseworkUI.Pages.Client.MakeAnApplicationPage"
+﻿<Page x:Class="CourseworkUI.Pages.EconomistPages.ChangeCostPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:CourseworkUI.Pages.Client" 
-      xmlns:models="clr-namespace:CourseworkUI.Models" 
-      d:DataContext="{d:DesignInstance Type=models:TypeOfInsurance}"
+      xmlns:local="clr-namespace:CourseworkUI.Pages.EconomistPages"
+  
       mc:Ignorable="d" 
       d:DesignHeight="340" d:DesignWidth="800"
       Title="GeneralInformationPage">
@@ -31,12 +30,24 @@
             <ListBox Name="ListTypeOfInsutrance" Margin="5" SelectionChanged="ListTypeOfInsutrance_SelectionChanged" />
 
             <StackPanel Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" >
+                <Button Margin="2,13,0,0"  
+                            Height="40" 
+                            Width="230"  
+                            Content="Update" 
+                            Name="UpdateButton" Click="UpdateButton_Click"
+                            />
+
                 <Button Margin="2,15,0,0"  
                             Height="40" 
                             Width="230"  
-                            Content="Apply for insurance" 
-                            Name="ApplyButton" Click="ApplyButton_Click"
+                            Content="Delete" 
+                            Name="DeleteButton" Click="DeleteButton_Click"
                             />
+                <Button Margin="2,15,0,0"  
+                            Height="40" 
+                            Width="230"  
+                            Content="Reboot" 
+                            Name="RebootButton" Click="RebootButton_Click"  />
             </StackPanel>
         </Grid>
 
@@ -59,40 +70,27 @@
                 </Grid.RowDefinitions>
 
                 <TextBlock Margin="7">Name:</TextBlock>
-                <TextBox Margin="5" Grid.Column="1"
-                         Name="NameText"
-                         IsReadOnly="True"/>
+                <TextBox Margin="5" Grid.Column="1" Name="NameText"/>
                 <TextBlock Margin="7" Grid.Row="2">Coast (bel. rub):</TextBlock>
-                <TextBox Margin="5" Grid.Row="2" Grid.Column="1" 
-                         Name="CostText"
-                         IsReadOnly="True"/>
+                <TextBox Margin="5" Grid.Row="2" Grid.Column="1" Name="CostText"/>
+
                 <TextBlock Margin="7" Grid.Row="3">Insurance amount:</TextBlock>
-                <TextBox Margin="5" Grid.Row="3" Grid.Column="1"
-                         Name="InsuranceAmount"
-                         IsReadOnly="True"/>
+                <TextBox Margin="5" Grid.Row="3" Grid.Column="1" Name="InsuranceAmount"/>
 
                 <TextBlock Margin="7" Grid.Column="0" Grid.Row="4">Risks:</TextBlock>
-                <TextBox Grid.Row="4" 
-                             Grid.RowSpan="2"
-                             Text=""
-                             Name="FirstBox"
-                             FontFamily="helvetica"
-                             FontSize="18"
-                             VerticalScrollBarVisibility="Auto"
-                             TextWrapping="Wrap"
-                             AcceptsReturn="True"
-                             Background="Transparent" 
-                             Foreground="WhiteSmoke" 
-                         Margin="5,7,5,0" Height="52" 
-                         VerticalAlignment="Top" Grid.Column="1"
-                         IsReadOnly="True"/>
+                <ListBox Grid.Row="4" 
+                            Grid.RowSpan="2"
+                            Name="FirstBox"
+                            FontFamily="helvetica"
+                            FontSize="18"    
+                            Background="Transparent" 
+                            Foreground="WhiteSmoke" Margin="5,7,5,0" Height="52" VerticalAlignment="Top" Grid.Column="1"/>
                 <StackPanel Grid.Column="2" Grid.RowSpan="10">
 
                     <TextBlock Margin="7,7,7,0" Grid.Row="3">Описание:</TextBlock>
                     <TextBox Margin="7" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" 
                          VerticalScrollBarVisibility="Visible" TextWrapping="Wrap" 
-                         Name="DescriprionText" Height="117"
-                             IsReadOnly="True"/>
+                         Name="DescriprionText" Height="117"/>
                 </StackPanel>
             </Grid>
         </Border>

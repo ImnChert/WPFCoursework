@@ -1,4 +1,4 @@
-﻿<Page x:Class="CourseworkUI.Pages.InsuranceAgentPages.ViewingApplicationsnPage"
+﻿<Page x:Class="CourseworkUI.Pages.InsuranceAgentPages.ViewingPolicyPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:CourseworkUI.Pages.InsuranceAgentPages"
       mc:Ignorable="d" 
        d:DesignHeight="340" d:DesignWidth="800"
-      Title="GeneralInformationPage">
+      Title="ViewingPolicyPage">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -27,12 +27,12 @@
                        FontSize="24"
                        Grid.Row="0"/>
 
-            <ListBox Grid.Row="1" Name="ApplicationListBox"
-                     Background="AliceBlue" SelectionChanged="ApplicationListBox_SelectionChanged"/>
+            <ListBox Grid.Row="1" Name="PolicyListBox"
+                     Background="AliceBlue" SelectionChanged="PolicyListBox_SelectionChanged"/>
         </Grid>
 
         <Grid Grid.Column="1" Grid.ColumnSpan="2" 
-              Visibility="Hidden"
+              Visibility="Visible"
               Name="HiddenGrid">
 
             <Grid.ColumnDefinitions>
@@ -45,11 +45,11 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
+
+
                 <RowDefinition/>
             </Grid.RowDefinitions>
+
 
 
             <TextBlock Text="Client:"
@@ -74,14 +74,10 @@
                        Grid.Column="0"
                        HorizontalAlignment="Right"/>
 
-            <TextBlock Grid.Row="1" Grid.Column="1"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center">
-                
-                <Hyperlink Foreground="PapayaWhip"
-                           FontSize="18"
-                           Name="TypeOfInsuracneLink" Click="TypeOfInsuracneLink_Click"/>
-            </TextBlock>
+            <TextBox Grid.Row="1" Grid.Column="1"
+                     Background="Transparent"
+                     Foreground="White"
+                     Name="TypeOfInsuranceTextBox"/>
 
             <TextBlock Text="Insurance amount:"
                        Foreground="White"
@@ -95,25 +91,12 @@
                      Foreground="White"
                      Name="InsuranceAmountTextBox"/>
 
-            <TextBlock Text="Cost of insurance contract:"
-                       Foreground="White"
-                       FontSize="20"
-                       Grid.Row="3"
-                       Grid.Column="0"
-                       HorizontalAlignment="Right"/>
-
-            <TextBox Grid.Row="3" Grid.Column="1"
-                     Background="Transparent"
-                     Foreground="White"
-                     Name="CostOfInsuranceContractTextBox"/>
-
-            <Button x:Name="ApproveButton" Grid.Row="4"
-                    Grid.RowSpan="4"
+            <Button x:Name="ApproveButton" Grid.Row="6"
+                    Grid.RowSpan="2"
                     Grid.Column="1"
                     Width="200"
                     Content="Approve"
-                    FontSize="24" Click="ApproveButton_Click" Height="86" Margin="47,42,46,0" VerticalAlignment="Top"/>
-
+                    FontSize="24" Click="ApproveButton_Click"/>
         </Grid>
     </Grid>
 </Page>

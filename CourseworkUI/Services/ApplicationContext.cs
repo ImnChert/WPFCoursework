@@ -24,6 +24,7 @@ namespace CourseworkUI.Services
 		public DbSet<Message> Messages { get; set; } = null!;
 		public DbSet<Policy> Polices { get; set; } = null!;
 		public DbSet<Economist> Economists { get; set; } = null!;
+		public DbSet<MonthlyPayment> MonthlyPayments { get; set; } = null!;
 
 		public ApplicationContext()
 		{

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CourseworkUI.Models;
+using CourseworkUI.Models.Users.Employees;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +21,28 @@ namespace CourseworkUI.Windows
 	/// </summary>
 	public partial class EconomistWindow : Window
 	{
-		public EconomistWindow()
+		public TypeOfInsurance TypeOfInsurance { get; set; } = null!;
+		public Economist Economist { get; set; }
+		public EconomistWindow(Economist economist)
 		{
+			Economist = economist;
 			InitializeComponent();
 		}
 
-		// TODO: сделать меню экономиста
+		private void Cross_MouseDown(object sender, MouseButtonEventArgs e) => this.Close();
+
+		private void Stick_MouseDown(object sender, MouseButtonEventArgs e) => this.WindowState = WindowState.Minimized;
+
+		private void Top_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.LeftButton == MouseButtonState.Pressed)
+				DragMove();
+		}
+
+		private void Frame_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.LeftButton == MouseButtonState.Pressed)
+				DragMove();
+		}
 	}
 }

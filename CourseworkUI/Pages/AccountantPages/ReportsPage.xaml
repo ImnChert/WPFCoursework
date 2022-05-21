@@ -1,0 +1,44 @@
+﻿<Page
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseworkUI.Pages.AccountantPages" 
+      xmlns:oxy="clr-namespace:OxyPlot.Series;assembly=OxyPlot"
+      xmlns:charting="clr-namespace:System.Windows.Forms.DataVisualization.Charting;assembly=System.Windows.Forms.DataVisualization"
+      xmlns:System="clr-namespace:System;assembly=System.Runtime" x:Class="CourseworkUI.Pages.AccountantPages.ReportsPage"
+      mc:Ignorable="d" 
+      d:DesignHeight="340" d:DesignWidth="800"
+      Title="Example 2 (WPF)">
+
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button Content="Employee salaries"
+                Width="300"
+                Height="80"
+                FontSize="24"
+                x:Name="EmployeeSalariesButton"
+                Grid.Column="0"
+                Grid.Row="0" Click="EmployeeSalariesButton_Click"  />
+
+        <Button Content="Activity of insurance agents"
+                Width="300"
+                Height="80"
+                FontSize="24"
+                x:Name="ActivityOfInsuranceAgentsButton"
+                Grid.Column="0"
+                Grid.Row="1"/>
+    </Grid>
+</Page>

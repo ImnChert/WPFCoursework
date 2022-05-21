@@ -12,7 +12,8 @@ namespace CourseworkUI.Models
 		public decimal InsuranceAmount { get; set; }
 		public decimal CostOfTheInsuranceContract { get; set; }
 		public string Type { get; set; }
-
+		public bool Hide { get; set; } = false;
+ 
 		public virtual ICollection<InsuranceRisk> IncludedRisks { get; set; } = new List<InsuranceRisk>();
 
 		public TypeOfInsurance(string name, string descriprion, decimal insuranceAmount, decimal costOfTheInsuranceContract, string type)

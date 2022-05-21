@@ -1,4 +1,5 @@
-﻿using CourseworkUI.Models.Users.Clients;
+﻿using CourseworkUI.Models;
+using CourseworkUI.Models.Users.Clients;
 using CourseworkUI.Services;
 using System.Windows;
 using System.Windows.Input;
@@ -12,6 +13,7 @@ namespace CourseworkUI.Windows
 	{
 		private ApplicationContext _database { get; } = null!;
 		public Client Client { get; } 
+		public TypeOfInsurance TypeOfInsurance { get; set; }
 
 		public ClientWindow(Client client)
 		{

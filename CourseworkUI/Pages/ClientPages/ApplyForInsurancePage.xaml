@@ -23,25 +23,17 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" 
+            <TextBlock Grid.Row="2" 
                        Text="Type of insurance:" 
                        Foreground="White"
                        VerticalAlignment="Center"/>
-            <ComboBox Grid.Row="1"
+            <TextBox Grid.Row="3"
                       x:Name = "ComboBox1"   
                       HorizontalAlignment="Left"
                       Width="150" 
                       Height="20"
-                      />
-            <TextBlock Grid.Row="2" 
-                       Text="Level:" 
-                       Foreground="White"
-                       VerticalAlignment="Center"/>
-            <ComboBox Grid.Row="3"
-                      x:Name = "ComboBox2"   
-                      HorizontalAlignment="Left"
-                      Width="150" 
-                      Height="20"/>
+                      IsReadOnly="True"/>
+            
             <TextBlock Grid.Row="4" 
                        Text="Insurance amount:" 
                        Foreground="White"
@@ -50,7 +42,8 @@
                      Grid.Row="5"
                       Width="150" 
                       Height="20"
-                     HorizontalAlignment="Left"/>
+                     HorizontalAlignment="Left"
+                     IsReadOnly="True"/>
             <TextBlock Grid.Row="6" 
                        Text="Cost of the insurance contract:" 
                        Foreground="White"
@@ -59,7 +52,8 @@
                      Grid.Row="7"
                       Width="150" 
                       Height="20"
-                     HorizontalAlignment="Left"/>
+                     HorizontalAlignment="Left"
+                     IsReadOnly="True"/>
 
             <Button Grid.Row="9"
                     Content="SEND"

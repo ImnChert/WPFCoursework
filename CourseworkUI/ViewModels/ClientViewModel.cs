@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows.Input;
 using CourseworkUI.Pages;
+using CourseworkUI.Pages.ClientPages;
 
 namespace CourseworkUI.ViewModels
 {
@@ -11,9 +12,10 @@ namespace CourseworkUI.ViewModels
 		private Page _generalInformationPage = new GeneralInformationPage();
 		private Page _makeAnApplicationPage = new MakeAnApplicationPage();
 		private Page _accountPage = new AccountPage();
-		private Page _applyForInsurancePage = new ApplyForInsurancePage();
+		public Page _applyForInsurancePage = new ApplyForInsurancePage();
 		public Page Message = new MessagerPage();
 		public Page CreateMessage = new CreateMessagePage();
+		private Page _policesPage = new IssuedPoliciesPage();
 		private Page _curPage = new GeneralInformationPage();
 
 		public Page CurPage
@@ -34,5 +36,7 @@ namespace CourseworkUI.ViewModels
 			   => new RelayCommand(() => CurPage = Message);
 		public ICommand OpenCreateMessagePage
 			   => new RelayCommand(() => CurPage = CreateMessage);
+		public ICommand OpenIssuedPoliciesPage
+			   => new RelayCommand(() => CurPage = _policesPage);
 	}
 }

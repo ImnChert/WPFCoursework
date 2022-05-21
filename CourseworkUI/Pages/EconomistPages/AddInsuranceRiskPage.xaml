@@ -1,0 +1,41 @@
+﻿<Page x:Class="CourseworkUI.Pages.EconomistPages.AddInsuranceRiskPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseworkUI.Pages.EconomistPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="340" d:DesignWidth="800"
+      Title="AddInsuranceRiskPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Name:" 
+                       Grid.Row="2"
+                       Foreground="White"
+                       FontSize="24"
+                      VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+        <TextBox x:Name="NameTextBox"
+                     Grid.Row="3"
+                     Width="350"
+                     HorizontalAlignment="Center"/>
+
+        <Button Grid.Row="7"
+                Content="Add"
+                FontSize="24"
+                Width="130"
+                Height="40" 
+                Name="AddButton" Click="AddButton_Click"/>
+    </Grid>
+</Page>

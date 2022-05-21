@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CourseworkUI.Models.Employees;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,12 +19,30 @@ namespace CourseworkUI.Windows
 	/// Interaction logic for AccountantWindow.xaml
 	/// </summary>
 	public partial class AccountantWindow : Window
-	{
-		public AccountantWindow()
+	{ 
+		public Accountant Accountant { get; }
+		public AccountantWindow(Accountant accountant)
 		{
+			Accountant = accountant;
 			InitializeComponent();
 		}
 
 		// TODO: Сделать меню бухгалтера
+
+		private void Cross_MouseDown(object sender, MouseButtonEventArgs e) => this.Close();
+
+		private void Stick_MouseDown(object sender, MouseButtonEventArgs e) => this.WindowState = WindowState.Minimized;
+
+		private void Top_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.LeftButton == MouseButtonState.Pressed)
+				DragMove();
+		}
+
+		private void Frame_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.LeftButton == MouseButtonState.Pressed)
+				DragMove();
+		}
 	}
 }

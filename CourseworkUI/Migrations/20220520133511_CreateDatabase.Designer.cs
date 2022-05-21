@@ -12,14 +12,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CourseworkUI.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220517122502_CreateDatabase")]
+    [Migration("20220520133511_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("ProductVersion", "6.0.5")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -92,6 +92,30 @@ namespace CourseworkUI.Migrations
                     b.ToTable("Messages");
                 });
 
+            modelBuilder.Entity("CourseworkUI.Models.MonthlyPayment", b =>
+                {
+                    b.Property<int>("MonthlyPaymentId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MonthlyPaymentId"), 1L, 1);
+
+                    b.Property<int>("Month")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("PayoutAmount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("PolicyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("MonthlyPaymentId");
+
+                    b.HasIndex("PolicyId");
+
+                    b.ToTable("MonthlyPayments");
+                });
+
             modelBuilder.Entity("CourseworkUI.Models.Policy", b =>
                 {
                     b.Property<int>("Id")
@@ -99,6 +123,9 @@ namespace CourseworkUI.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<decimal>("AmountPaid")
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ClientId")
                         .HasColumnType("int");
@@ -117,6 +144,9 @@ namespace CourseworkUI.Migrations
 
                     b.Property<decimal>("InsuranceAmount")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Payment")
+                        .HasColumnType("int");
 
                     b.Property<int>("TypeOfInsuranceId")
                         .HasColumnType("int");
@@ -146,6 +176,9 @@ namespace CourseworkUI.Migrations
                     b.Property<string>("Descriprion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Hide")
+                        .HasColumnType("bit");
 
                     b.Property<decimal>("InsuranceAmount")
                         .HasColumnType("decimal(18,2)");
@@ -341,6 +374,17 @@ namespace CourseworkUI.Migrations
                     b.Navigation("TypeOfInsurance");
                 });
 
+            modelBuilder.Entity("CourseworkUI.Models.MonthlyPayment", b =>
+                {
+                    b.HasOne("CourseworkUI.Models.Policy", "Policy")
+                        .WithMany("MonthlyPay")
+                        .HasForeignKey("PolicyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Policy");
+                });
+
             modelBuilder.Entity("CourseworkUI.Models.Policy", b =>
                 {
                     b.HasOne("CourseworkUI.Models.Users.Clients.Client", "Client")
@@ -462,6 +506,11 @@ namespace CourseworkUI.Migrations
                         .HasForeignKey("CourseworkUI.Models.Users.Employees.Economist", "Id")
                         .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("CourseworkUI.Models.Policy", b =>
+                {
+                    b.Navigation("MonthlyPay");
                 });
 #pragma warning restore 612, 618
         }

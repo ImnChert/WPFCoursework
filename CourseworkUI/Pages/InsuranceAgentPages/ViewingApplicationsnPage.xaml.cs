@@ -24,7 +24,7 @@ namespace CourseworkUI.Pages.InsuranceAgentPages
 	/// </summary>
 	public partial class ViewingApplicationsnPage : Page
 	{
-		private ClientApplication _application { get; set; }	
+		private ClientApplication _application { get; set; } = null!;
 
 		private ApplicationContext _db = new ApplicationContext();
 		public ViewingApplicationsnPage()
@@ -47,7 +47,7 @@ namespace CourseworkUI.Pages.InsuranceAgentPages
 
 			ClientLink.DataContext = _application.Client.Username;
 			TypeOfInsuracneLink.DataContext = _application.TypeOfInsurance.Name;
-			 
+
 		}
 
 		private void ClientLink_Click(object sender, RoutedEventArgs e)
@@ -62,6 +62,11 @@ namespace CourseworkUI.Pages.InsuranceAgentPages
 			var clientInformationWindow = new TypeOfInsuranceInformationWindow(_application.TypeOfInsurance);
 
 			clientInformationWindow.ShowDialog();
+		}
+
+		private void ApproveButton_Click(object sender, RoutedEventArgs e)
+		{
+			// TODO: открытие мессаджера и поставить агента
 		}
 	}
 }

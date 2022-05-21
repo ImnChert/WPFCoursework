@@ -2,6 +2,7 @@
 using CourseworkUI.Models.Clients;
 using CourseworkUI.Models.Employees;
 using CourseworkUI.Models.Users.Clients;
+using CourseworkUI.Models.Users.Employees;
 using CourseworkUI.Services;
 using CourseworkUI.Windows;
 using System;
@@ -101,10 +102,11 @@ namespace CourseworkUI
 			{
 				{ "NaturalPerson", () => { OpenNewWindow(new ClientWindow( (Client)_user)); } },
 				{ "LegalPerson", () => { OpenNewWindow(new ClientWindow( (Client)_user)); } },
-				//{ "Accountant", () => { OpenNewWindow(new ClientWindow(DataBase)); } },
+				{ "Accountant", () => { OpenNewWindow(new AccountantWindow((Accountant)_user)); } },
 				{ "InsuranceAgent", () => { OpenNewWindow(new InsuranceAgentWindow((InsuranceAgent)_user)); }},
 				//{ "Manager", () => { OpenNewWindow(new ClientWindow(DataBase)); }},
 				{ "Admin", () => { OpenNewWindow(new AdminWindow((Admin)_user)); }},
+				{ "Economist", () => { OpenNewWindow(new EconomistWindow((Economist)_user)); }},
 			};
 		}
 	}

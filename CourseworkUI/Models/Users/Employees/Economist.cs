@@ -10,5 +10,7 @@ namespace CourseworkUI.Models.Users.Employees
 		: base(username, password, firstName, lastName, middleName, salary)
 		{
 		}
+
+		public override string? ToString() => "Economist";
 	}
 }
